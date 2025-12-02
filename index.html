@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,187 +12,199 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0e27;
             color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
             min-height: 100vh;
+            background: linear-gradient(180deg, rgba(10,14,39,0.7) 0%, rgba(10,14,39,0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             padding: 40px 20px;
+            position: relative;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(10,14,39,0.8) 100%);
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 80px;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
         }
 
-        .logo {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #00d4ff 0%, #0066ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .brand {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 60px;
+            color: #00d4ff;
+            text-transform: uppercase;
         }
 
-        .tagline {
-            font-size: 20px;
-            color: #8b9dc3;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .main-title {
-            font-size: 56px;
+        .main-headline {
+            font-size: 52px;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 30px;
             color: #ffffff;
         }
 
-        .description {
-            font-size: 18px;
-            color: #8b9dc3;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto 50px;
+        .highlight {
+            color: #00d4ff;
         }
 
-        .cta-primary {
+        .sub-headline {
+            font-size: 28px;
+            font-weight: 300;
+            font-style: italic;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+        }
+
+        .description {
+            font-size: 19px;
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
             display: inline-block;
             background: #0066ff;
             color: #fff;
-            padding: 18px 50px;
-            border-radius: 50px;
+            padding: 20px 60px;
+            border-radius: 8px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 40px rgba(0, 102, 255, 0.6);
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.5),
-                        0 0 60px rgba(0, 102, 255, 0.3);
-            position: relative;
-            overflow: hidden;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(0, 102, 255, 0.7),
-                        0 0 80px rgba(0, 102, 255, 0.4);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 60px rgba(0, 102, 255, 0.8);
+            background: #0052cc;
         }
 
-        .cta-primary::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
+        .trust-badge {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 14px;
+            color: #8b9dc3;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .stars {
+            color: #00d4ff;
+            font-size: 18px;
         }
 
-        .links-section {
-            margin-top: 100px;
+        .social-section {
+            background: #0f1430;
+            padding: 100px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             color: #ffffff;
         }
 
-        .social-links {
+        .social-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            max-width: 700px;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .social-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 24px 30px;
-            border-radius: 16px;
-            color: #fff;
+        .social-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
             text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
+            color: #fff;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
             backdrop-filter: blur(10px);
         }
 
-        .social-btn:hover {
-            transform: translateY(-3px);
+        .social-card:hover {
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 102, 255, 0.5);
+            border-color: rgba(0, 102, 255, 0.4);
         }
 
-        .social-btn.discord:hover {
-            border-color: #5865f2;
-            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.3);
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
         }
 
-        .social-btn.youtube:hover {
-            border-color: #ff0000;
-            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.3);
+        .social-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        .social-btn.twitter:hover {
-            border-color: #1d9bf0;
-            box-shadow: 0 8px 30px rgba(29, 155, 240, 0.3);
+        .social-desc {
+            font-size: 14px;
+            color: #8b9dc3;
         }
 
-        .social-btn.instagram:hover {
-            border-color: #e1306c;
-            box-shadow: 0 8px 30px rgba(225, 48, 108, 0.3);
+        .stats-bar {
+            background: rgba(0, 102, 255, 0.1);
+            border-top: 1px solid rgba(0, 102, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+            padding: 40px 20px;
+            margin-top: -1px;
         }
 
-        .icon {
-            width: 24px;
-            height: 24px;
-        }
-
-        .stats {
+        .stats-container {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            margin: 60px 0;
+            gap: 80px;
             flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .stat-item {
+        .stat {
             text-align: center;
         }
 
         .stat-number {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 700;
-            color: #0066ff;
+            color: #00d4ff;
             display: block;
             margin-bottom: 8px;
         }
@@ -204,101 +216,107 @@
             letter-spacing: 1px;
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
         @media (max-width: 768px) {
-            .main-title {
+            .main-headline {
                 font-size: 36px;
             }
 
-            .logo {
-                font-size: 32px;
+            .sub-headline {
+                font-size: 22px;
             }
 
-            .social-links {
+            .brand {
+                font-size: 22px;
+            }
+
+            .social-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stats {
+            .stats-container {
                 gap: 40px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">THEWILLSTREET</div>
-            <div class="tagline">Trading Education & Community</div>
-        </div>
-
-        <div class="hero-section">
-            <div class="badge">🎯 FREE VALUE</div>
-            <h1 class="main-title">Apprends le Trading<br>Gratuitement</h1>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="brand">THEWILLSTREET</div>
+            
+            <h1 class="main-headline">
+                Master the Art of <span class="highlight">Trading</span><br>
+                Without Spending a Dime
+            </h1>
+            
+            <p class="sub-headline">(even if you're a complete beginner)</p>
+            
             <p class="description">
-                Rejoins une communauté passionnée qui partage ses analyses de marché, stratégies gagnantes et connaissances en trading. Tout ça, 100% gratuitement.
+                Join thousands of traders who are learning profitable strategies, market analysis, and proven techniques through our free community and content.
             </p>
-            <a href="https://discord.gg/VOTRE_LIEN" class="cta-primary">Rejoindre Maintenant</a>
-        </div>
-
-        <div class="stats">
-            <div class="stat-item">
-                <span class="stat-number">1000+</span>
-                <span class="stat-label">Membres</span>
+            
+            <a href="https://discord.gg/VOTRE_LIEN" class="cta-button">Join Free Now</a>
+            
+            <div class="trust-badge">
+                <span class="stars">★★★★★</span>
+                <span>Over 3,000 traders already connected to our ecosystem</span>
             </div>
-            <div class="stat-item">
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat">
+                <span class="stat-number">3000+</span>
+                <span class="stat-label">Members Across Platforms</span>
+            </div>
+            <div class="stat">
                 <span class="stat-number">50+</span>
-                <span class="stat-label">Vidéos</span>
+                <span class="stat-label">Free Videos</span>
             </div>
-            <div class="stat-item">
+            <div class="stat">
                 <span class="stat-number">100%</span>
-                <span class="stat-label">Gratuit</span>
+                <span class="stat-label">Free Access</span>
             </div>
         </div>
+    </section>
 
-        <div class="links-section">
-            <h2 class="section-title">Suis-moi sur les réseaux</h2>
-            <div class="social-links">
-                <a href="https://discord.gg/VOTRE_LIEN" class="social-btn discord">
-                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                    </svg>
-                    Discord Community
-                </a>
+    <section class="social-section">
+        <h2 class="section-title">Connect With Me</h2>
+        
+        <div class="social-grid">
+            <a href="https://discord.gg/VOTRE_LIEN" class="social-card">
+                <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+                <div class="social-name">Discord Community</div>
+                <div class="social-desc">Join our active trading community</div>
+            </a>
 
-                <a href="https://youtube.com/@VOTRE_CHAINE" class="social-btn youtube">
-                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    YouTube
-                </a>
+            <a href="https://youtube.com/@VOTRE_CHAINE" class="social-card">
+                <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <div class="social-name">YouTube</div>
+                <div class="social-desc">Free trading tutorials & analysis</div>
+            </a>
 
-                <a href="https://twitter.com/VOTRE_TWITTER" class="social-btn twitter">
-                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                    Twitter / X
-                </a>
+            <a href="https://twitter.com/VOTRE_TWITTER" class="social-card">
+                <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+                <div class="social-name">Twitter / X</div>
+                <div class="social-desc">Daily market insights</div>
+            </a>
 
-                <a href="https://instagram.com/VOTRE_INSTAGRAM" class="social-btn instagram">
-                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    Instagram
-                </a>
-            </div>
+            <a href="https://instagram.com/VOTRE_INSTAGRAM" class="social-card">
+                <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <div class="social-name">Instagram</div>
+                <div class="social-desc">Behind the scenes content</div>
+            </a>
         </div>
-    </div>
+    </section>
 </body>
 </html>
