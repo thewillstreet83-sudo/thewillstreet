@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The WillStreet Journal — A trading journal, reimagined.</title>
+<meta name="description" content="A trading journal built for the way serious traders actually think. Disciplined, deliberate, honest. Waitlist open — private beta Q3 2026.">
+<meta property="og:title" content="The WillStreet Journal — Every trade, understood.">
+<meta property="og:description" content="A trading journal built for the way serious traders actually think. Waitlist open — private beta Q3 2026.">
+<meta property="og:url" content="https://thewillstreet.com/journal/waitlist/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The WillStreet Journal — Every trade, understood.">
+<meta name="twitter:description" content="A trading journal built for the way serious traders actually think. Waitlist open — private beta Q3 2026.">
+<!-- TODO: add og:image (1200x630) once a cover is designed -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --ink:#1d1d1f;
+    --ink-2:#6e6e73;
+    --ink-3:#a1a1a6;
+    --black:#000000;
+    --line-dark:rgba(255,255,255,0.08);
+    --line-light:rgba(0,0,0,0.08);
+    --green:#30d158;
+    --red:#ff453a;
+    --radius:10px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#fff;color:var(--ink);}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    font-size:19px;
+    line-height:1.55;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    letter-spacing:-0.01em;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-feature-settings:"tnum" 1;}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;border:0;cursor:pointer;background:none;color:inherit}
+  input{font:inherit}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    height:56px;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .35s ease, backdrop-filter .35s ease, border-color .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  .nav.scrolled{
+    background:rgba(255,255,255,0.72);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--line-light);
+  }
+  .nav.on-dark.scrolled{
+    background:rgba(0,0,0,0.64);
+    border-bottom-color:var(--line-dark);
+  }
+  .nav.on-dark{color:#fff}
+  .nav-inner{
+    width:100%;max-width:1200px;padding:0 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-weight:600;font-size:15px;letter-spacing:-0.02em;
+  }
+  .brand-mark{
+    width:22px;height:22px;border-radius:6px;
+    background:var(--ink);color:#fff;
+    display:grid;place-items:center;
+    font-size:12px;font-weight:700;letter-spacing:-0.04em;
+  }
+  .nav.on-dark .brand-mark{background:#fff;color:#000}
+  .nav-link{font-size:14px;font-weight:500;color:var(--ink-2);transition:color .2s}
+  .nav-link:hover{color:var(--ink)}
+  .nav.on-dark .nav-link{color:rgba(255,255,255,.7)}
+  .nav.on-dark .nav-link:hover{color:#fff}
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    position:relative;
+    padding:160px 28px 200px;
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  section.dark{background:#000;color:#fff}
+  .container{width:100%;max-width:1200px;margin:0 auto}
+  .wide{max-width:1400px}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}
+  .reveal.d2{transition-delay:.16s}
+  .reveal.d3{transition-delay:.24s}
+  .reveal.d4{transition-delay:.32s}
+
+  /* type scale */
+  .eyebrow{
+    font-size:13px;font-weight:500;letter-spacing:.02em;
+    color:var(--green);
+    text-transform:none;
+    margin-bottom:22px;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .eyebrow::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 0 4px rgba(48,209,88,.14);
+  }
+  h1.hero{
+    font-size:clamp(56px,9.2vw,128px);
+    line-height:0.96;letter-spacing:-0.035em;font-weight:700;
+    text-align:center;
+  }
+  h2.section-title{
+    font-size:clamp(44px,6.2vw,80px);
+    line-height:1.02;letter-spacing:-0.03em;font-weight:600;
+  }
+  .lead{
+    font-size:clamp(19px,1.6vw,22px);
+    color:var(--ink-2);line-height:1.5;font-weight:400;
+    max-width:680px;
+  }
+  .dark .lead{color:rgba(255,255,255,.68)}
+  .center{text-align:center}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  /* CTA button */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:52px;padding:0 28px;
+    border-radius:999px;
+    background:var(--green);color:#0a2915;
+    font-weight:600;font-size:15px;letter-spacing:-0.01em;
+    transition:transform .25s cubic-bezier(.22,.61,.36,1), background .25s ease, box-shadow .25s ease;
+  }
+  .btn:hover{transform:scale(1.02);background:#3dd968}
+  .btn:active{transform:scale(.99)}
+  .btn svg{width:14px;height:14px}
+  .btn.ghost{
+    background:transparent;color:inherit;
+    border:1px solid var(--line-light);
+  }
+  .dark .btn.ghost{border-color:var(--line-dark)}
+
+  /* ---------- HERO ---------- */
+  .hero-sec{
+    padding-top:140px;padding-bottom:0;
+    min-height:100vh;
+    overflow:hidden;
+  }
+  .hero-radial{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(60% 55% at 50% 62%, rgba(48,209,88,0.08), rgba(48,209,88,0) 70%);
+  }
+  .hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;}
+  .hero-sub{
+    margin-top:28px;
+    font-size:clamp(19px,1.5vw,22px);
+    color:var(--ink-2);
+    max-width:620px;text-align:center;
+  }
+  .hero-cta-row{
+    margin-top:40px;display:flex;gap:14px;align-items:center;
+  }
+  .hero-note{font-size:13px;color:var(--ink-3)}
+  .hero-preview-wrap{
+    margin-top:80px;
+    width:min(1200px,100%);
+    position:relative;
+  }
+  .hero-preview{
+    transform:translateY(40px);
+    transition:transform 1.2s cubic-bezier(.22,.61,.36,1), opacity 1s;
+    opacity:.0;
+    will-change:transform;
+  }
+  .hero-preview.in{opacity:1}
+
+  /* ---------- DASHBOARD MOCKUP ---------- */
+  .dash{
+    width:100%;
+    background:#fff;
+    border:1px solid var(--line-light);
+    border-radius:14px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 30px 60px -20px rgba(0,0,0,.12);
+    overflow:hidden;
+    color:var(--ink);
+  }
+  .dash.dark-mock{
+    background:#0b0b0d;
+    border-color:rgba(255,255,255,.06);
+    color:#fff;
+    box-shadow:0 1px 2px rgba(0,0,0,.4),0 30px 60px -20px rgba(0,0,0,.6);
+  }
+  .dash-chrome{
+    height:38px;display:flex;align-items:center;gap:8px;
+    padding:0 14px;
+    border-bottom:1px solid var(--line-light);
+    background:rgba(0,0,0,.015);
+  }
+  .dark-mock .dash-chrome{border-bottom-color:rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+  .dot{width:11px;height:11px;border-radius:50%;background:#e4e4e7}
+  .dark-mock .dot{background:#2a2a2e}
+  .dash-title{margin-left:12px;font-size:12px;color:var(--ink-3);font-weight:500}
+  .dark-mock .dash-title{color:rgba(255,255,255,.45)}
+
+  .dash-body{display:grid;grid-template-columns:220px 1fr;min-height:560px}
+  .dash-side{
+    border-right:1px solid var(--line-light);
+    padding:22px 16px;
+    display:flex;flex-direction:column;gap:4px;
+    background:rgba(0,0,0,.012);
+  }
+  .dark-mock .dash-side{border-right-color:rgba(255,255,255,.06);background:rgba(255,255,255,.015)}
+  .side-label{
+    font-size:11px;color:var(--ink-3);font-weight:500;
+    padding:12px 10px 6px;letter-spacing:.02em;
+  }
+  .dark-mock .side-label{color:rgba(255,255,255,.4)}
+  .side-item{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:8px;
+    font-size:13px;font-weight:500;color:var(--ink-2);
+    cursor:default;
+  }
+  .dark-mock .side-item{color:rgba(255,255,255,.65)}
+  .side-item.active{background:rgba(0,0,0,.05);color:var(--ink)}
+  .dark-mock .side-item.active{background:rgba(255,255,255,.06);color:#fff}
+  .side-ico{width:14px;height:14px;border-radius:4px;background:currentColor;opacity:.35}
+  .side-item.active .side-ico{opacity:.9}
+
+  .dash-main{padding:28px 32px;display:flex;flex-direction:column;gap:26px}
+  .dash-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .dash-head h3{font-size:22px;font-weight:600;letter-spacing:-0.02em}
+  .dash-head .sub{font-size:13px;color:var(--ink-3)}
+  .dark-mock .dash-head .sub{color:rgba(255,255,255,.5)}
+
+  .stat-row{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .stat{
+    padding:18px 18px 16px;
+    border:1px solid var(--line-light);border-radius:10px;
+    background:#fff;
+  }
+  .dark-mock .stat{background:#111114;border-color:rgba(255,255,255,.06)}
+  .stat .k{font-size:11px;color:var(--ink-3);font-weight:500;margin-bottom:10px;letter-spacing:.01em}
+  .dark-mock .stat .k{color:rgba(255,255,255,.45)}
+  .stat .v{font-size:28px;font-weight:500;letter-spacing:-0.02em;line-height:1}
+  .stat .delta{
+    margin-top:8px;display:inline-flex;align-items:center;gap:4px;
+    font-size:12px;font-weight:500;
+  }
+  .pos{color:var(--green)}
+  .neg{color:var(--red)}
+
+  .chart-wrap{
+    border:1px solid var(--line-light);border-radius:10px;
+    padding:22px 24px 14px;
+    background:#fff;
+  }
+  .dark-mock .chart-wrap{background:#111114;border-color:rgba(255,255,255,.06)}
+  .chart-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+  .chart-head .lbl{font-size:12px;color:var(--ink-3);font-weight:500}
+  .dark-mock .chart-head .lbl{color:rgba(255,255,255,.5)}
+  .chart-head .big{font-size:32px;font-weight:500;letter-spacing:-0.02em}
+  .chart-head .delta{font-size:13px;font-weight:500}
+  .chart-svg{width:100%;height:180px;display:block}
+
+  .trades{
+    border:1px solid var(--line-light);border-radius:10px;
+    background:#fff;overflow:hidden;
+  }
+  .dark-mock .trades{background:#111114;border-color:rgba(255,255,255,.06)}
+  .tr-row{
+    display:grid;
+    grid-template-columns:1fr 90px 90px 110px 90px;
+    padding:12px 20px;
+    font-size:13px;font-weight:500;align-items:center;
+    border-bottom:1px solid var(--line-light);
+  }
+  .dark-mock .tr-row{border-bottom-color:rgba(255,255,255,.05)}
+  .tr-row:last-child{border-bottom:0}
+  .tr-row.head{
+    font-size:11px;color:var(--ink-3);font-weight:500;
+    background:rgba(0,0,0,.015);
+  }
+  .dark-mock .tr-row.head{color:rgba(255,255,255,.45);background:rgba(255,255,255,.02)}
+  .tr-sym{display:flex;align-items:center;gap:10px}
+  .sym-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;font-weight:500;
+    padding:3px 7px;border-radius:5px;
+    background:rgba(0,0,0,.05);color:var(--ink);
+  }
+  .dark-mock .sym-tag{background:rgba(255,255,255,.08);color:#fff}
+  .side-pill{
+    font-size:11px;font-weight:500;padding:3px 8px;border-radius:999px;
+    background:rgba(0,0,0,.05);color:var(--ink-2);
+  }
+  .dark-mock .side-pill{background:rgba(255,255,255,.06);color:rgba(255,255,255,.75)}
+  .side-pill.long{background:rgba(48,209,88,.12);color:#1a8a3a}
+  .dark-mock .side-pill.long{color:#5de585}
+  .side-pill.short{background:rgba(255,69,58,.12);color:#c0362f}
+  .dark-mock .side-pill.short{color:#ff6f66}
+
+  /* ---------- FEATURE: SETUPS ---------- */
+  .feat-split{
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+    width:100%;max-width:1400px;
+  }
+  .feat-split .copy h2{margin-bottom:28px}
+  .feat-split .copy .lead{max-width:480px}
+
+  .setup-mock{
+    background:#fff;border:1px solid var(--line-light);border-radius:14px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 50px -20px rgba(0,0,0,.1);
+    overflow:hidden;
+  }
+  .setup-head{
+    padding:22px 24px 18px;border-bottom:1px solid var(--line-light);
+    display:flex;align-items:baseline;justify-content:space-between;
+  }
+  .setup-head .t{font-size:15px;font-weight:600;letter-spacing:-0.01em}
+  .setup-head .s{font-size:12px;color:var(--ink-3)}
+  .setup-body{padding:24px}
+  .setup-row{margin-bottom:22px}
+  .setup-row:last-child{margin-bottom:0}
+  .setup-row .k{font-size:11px;color:var(--ink-3);font-weight:500;margin-bottom:10px;letter-spacing:.01em}
+  .tagset{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{
+    font-size:13px;font-weight:500;padding:7px 12px;border-radius:8px;
+    border:1px solid var(--line-light);color:var(--ink-2);
+    background:#fff;
+  }
+  .tag.on{background:#1d1d1f;color:#fff;border-color:#1d1d1f}
+  .tag.tone-g.on{background:var(--green);color:#0a2915;border-color:var(--green)}
+
+  .note-box{
+    border:1px solid var(--line-light);border-radius:10px;padding:16px 18px;
+    background:rgba(0,0,0,.015);
+  }
+  .note-box .note-text{font-size:14px;color:var(--ink);line-height:1.55}
+  .note-box .note-meta{
+    margin-top:10px;font-size:11px;color:var(--ink-3);
+    display:flex;gap:10px;align-items:center;
+  }
+
+  /* ---------- FEATURE: ANALYTICS (DARK) ---------- */
+  .analytics-grid{
+    display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px;
+    width:100%;max-width:1400px;margin-top:70px;
+  }
+  .panel{
+    background:#0b0b0d;border:1px solid rgba(255,255,255,.06);border-radius:12px;
+    padding:24px;
+  }
+  .panel .k{font-size:12px;color:rgba(255,255,255,.5);font-weight:500;margin-bottom:14px;letter-spacing:.01em}
+  .panel .hero-num{font-size:56px;font-weight:500;letter-spacing:-0.03em;line-height:1}
+  .panel .sub{margin-top:10px;font-size:13px;color:rgba(255,255,255,.55)}
+
+  .bars{display:flex;align-items:flex-end;gap:6px;height:120px;margin-top:18px}
+  .bar{flex:1;background:rgba(255,255,255,.12);border-radius:3px;transition:background .3s}
+  .bar.g{background:var(--green)}
+  .bar.r{background:var(--red)}
+
+  .heat{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:18px}
+  .cell{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.04)}
+
+  /* ---------- FEATURE: MENTOR ---------- */
+  .mentor-wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;
+    width:100%;max-width:1300px;align-items:stretch;
+  }
+  .trade-card{
+    background:#fff;border:1px solid var(--line-light);border-radius:14px;
+    padding:28px 28px 24px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 50px -20px rgba(0,0,0,.1);
+  }
+  .trade-card .th{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
+  .trade-card .th h4{font-size:20px;font-weight:600;letter-spacing:-0.02em}
+  .trade-card .th .meta{font-size:12px;color:var(--ink-3);margin-top:4px}
+  .trade-card .pl{text-align:right}
+  .trade-card .pl .amt{font-size:24px;font-weight:500;letter-spacing:-0.02em;color:var(--green)}
+  .trade-card .pl .r{font-size:12px;color:var(--ink-3);margin-top:4px}
+
+  .tc-row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line-light);font-size:13px}
+  .tc-row .k{color:var(--ink-3)}
+  .tc-row .v{font-weight:500}
+
+  .thread{
+    background:#fff;border:1px solid var(--line-light);border-radius:14px;
+    padding:24px;display:flex;flex-direction:column;gap:14px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 50px -20px rgba(0,0,0,.1);
+  }
+  .thread-h{font-size:12px;color:var(--ink-3);font-weight:500;letter-spacing:.01em;padding-bottom:6px}
+  .msg{display:flex;gap:12px}
+  .avatar{
+    width:32px;height:32px;border-radius:50%;flex-shrink:0;
+    background:var(--ink);color:#fff;
+    display:grid;place-items:center;
+    font-size:12px;font-weight:600;
+  }
+  .avatar.m{background:var(--green);color:#0a2915}
+  .msg-body{flex:1}
+  .msg-head{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+  .msg-name{font-size:13px;font-weight:600}
+  .msg-role{font-size:11px;color:var(--ink-3);font-weight:500}
+  .msg-time{font-size:11px;color:var(--ink-3);margin-left:auto}
+  .msg-text{font-size:14px;color:var(--ink);line-height:1.55}
+
+  /* ---------- SOCIAL PROOF ---------- */
+  .proof{
+    font-size:clamp(44px,6.4vw,84px);
+    line-height:1.05;letter-spacing:-0.03em;font-weight:600;
+    text-align:center;max-width:1100px;
+  }
+  .proof em{font-style:normal;color:var(--ink-3)}
+
+  /* ---------- FINAL CTA ---------- */
+  .final h2{
+    font-size:clamp(72px,11vw,160px);
+    line-height:.94;letter-spacing:-0.04em;font-weight:700;
+  }
+  .final .lead{color:rgba(255,255,255,.6);margin-top:24px}
+  .email-form{
+    margin-top:56px;
+    display:flex;gap:10px;
+    width:min(520px,100%);
+    padding:6px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:999px;
+    transition:border-color .3s, background .3s, box-shadow .3s;
+  }
+  .email-form:focus-within{
+    border-color:rgba(48,209,88,.55);
+    background:rgba(255,255,255,.08);
+    box-shadow:0 0 0 6px rgba(48,209,88,.08);
+  }
+  .email-form input{
+    flex:1;
+    background:transparent;border:0;outline:0;color:#fff;
+    padding:0 20px;height:52px;font-size:15px;letter-spacing:-0.01em;
+  }
+  .email-form input::placeholder{color:rgba(255,255,255,.4)}
+  .email-form button{
+    height:52px;padding:0 26px;border-radius:999px;
+    background:var(--green);color:#0a2915;font-weight:600;font-size:15px;
+    transition:transform .25s, background .25s;
+  }
+  .email-form button:hover{transform:scale(1.02);background:#3dd968}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#000;color:rgba(255,255,255,.5);
+    padding:48px 28px 56px;
+  }
+  .foot-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+  .foot-left{display:flex;align-items:center;gap:12px;font-size:13px}
+  .foot-left .brand-mark{background:#fff;color:#000}
+  .socials{display:flex;gap:8px}
+  .soc{
+    width:34px;height:34px;border-radius:8px;
+    border:1px solid rgba(255,255,255,.08);
+    display:grid;place-items:center;color:rgba(255,255,255,.65);
+    transition:background .2s, color .2s;
+  }
+  .soc:hover{background:rgba(255,255,255,.06);color:#fff}
+  .copy{font-size:12px;color:rgba(255,255,255,.35)}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .dash-body{grid-template-columns:1fr}
+    .dash-side{display:none}
+    .stat-row{grid-template-columns:repeat(2,1fr)}
+    .feat-split{grid-template-columns:1fr;gap:40px}
+    .analytics-grid{grid-template-columns:1fr}
+    .mentor-wrap{grid-template-columns:1fr}
+    .tr-row{grid-template-columns:1fr 70px 90px 80px;font-size:12px;padding:10px 14px}
+    .tr-row .c-rmul{display:none}
+    section{padding:120px 20px 140px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="Back to thewillstreet.com">
+      <div class="brand-mark">W</div>
+      <span>The WillStreet Journal</span>
+    </a>
+    <a href="#waitlist" class="nav-link">Waitlist →</a>
+  </div>
+</nav>
+
+<!-- 1. HERO -->
+<section class="hero-sec" data-theme="light" data-screen-label="01 Hero">
+  <div class="hero-radial"></div>
+  <div class="hero-inner container">
+    <span class="eyebrow reveal">Private beta opens Q3 2026</span>
+    <h1 class="hero reveal d1">
+      Every trade,<br/>understood.
+    </h1>
+    <p class="hero-sub reveal d2">
+      A trading journal built for the way serious traders actually think — disciplined, deliberate, and relentlessly honest.
+    </p>
+    <div class="hero-cta-row reveal d3">
+      <a href="#waitlist" class="btn">
+        Join the waitlist
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <span class="hero-note">No credit card. No spam. One email when we're ready.</span>
+    </div>
+
+    <div class="hero-preview-wrap reveal d4">
+      <div class="hero-preview" id="heroPreview">
+        <!-- compact dashboard preview -->
+        <div class="dash">
+          <div class="dash-chrome">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dash-title">journal.willstreet.app / overview</div>
+          </div>
+          <div class="dash-body" style="min-height:380px">
+            <aside class="dash-side">
+              <div class="side-label">Journal</div>
+              <div class="side-item active"><span class="side-ico"></span>Overview</div>
+              <div class="side-item"><span class="side-ico"></span>Trades</div>
+              <div class="side-item"><span class="side-ico"></span>Setups</div>
+              <div class="side-item"><span class="side-ico"></span>Analytics</div>
+              <div class="side-label" style="margin-top:14px">Review</div>
+              <div class="side-item"><span class="side-ico"></span>Daily notes</div>
+              <div class="side-item"><span class="side-ico"></span>Mentor</div>
+            </aside>
+            <div class="dash-main">
+              <div class="dash-head">
+                <div>
+                  <h3>Overview</h3>
+                  <div class="sub mono">April 1 — Apr 22, 2026 · 84 trades</div>
+                </div>
+                <div class="sub">Mode · Swing</div>
+              </div>
+              <div class="chart-wrap">
+                <div class="chart-head">
+                  <div>
+                    <div class="lbl">Equity</div>
+                    <div class="big mono">$184,620</div>
+                  </div>
+                  <div class="delta pos mono">+12.4% MTD</div>
+                </div>
+                <svg class="chart-svg" viewBox="0 0 800 180" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="eqFill" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#30d158" stop-opacity=".18"/>
+                      <stop offset="100%" stop-color="#30d158" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,140 L40,138 80,132 120,128 160,134 200,120 240,118 280,108 320,110 360,96 400,94 440,82 480,86 520,70 560,62 600,68 640,50 680,46 720,32 760,28 800,22 L800,180 L0,180 Z" fill="url(#eqFill)"/>
+                  <path d="M0,140 L40,138 80,132 120,128 160,134 200,120 240,118 280,108 320,110 360,96 400,94 440,82 480,86 520,70 560,62 600,68 640,50 680,46 720,32 760,28 800,22" fill="none" stroke="#30d158" stroke-width="1.75"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. DASHBOARD REVEAL -->
+<section data-theme="light" data-screen-label="02 Dashboard">
+  <div class="container center">
+    <span class="eyebrow reveal">The dashboard</span>
+    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">A complete picture of your edge.</h2>
+    <p class="lead reveal d2" style="margin-top:28px">Setups, stats, and the story behind every trade — rendered the way you'd want to see them at 9:30 on a Monday.</p>
+  </div>
+
+  <div class="container wide reveal d3" style="margin-top:80px">
+    <div class="dash">
+      <div class="dash-chrome">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dash-title">journal.willstreet.app / overview</div>
+      </div>
+      <div class="dash-body">
+        <aside class="dash-side">
+          <div class="side-label">Journal</div>
+          <div class="side-item active"><span class="side-ico"></span>Overview</div>
+          <div class="side-item"><span class="side-ico"></span>Trades</div>
+          <div class="side-item"><span class="side-ico"></span>Setups</div>
+          <div class="side-item"><span class="side-ico"></span>Analytics</div>
+          <div class="side-item"><span class="side-ico"></span>Playbook</div>
+          <div class="side-label" style="margin-top:14px">Review</div>
+          <div class="side-item"><span class="side-ico"></span>Daily notes</div>
+          <div class="side-item"><span class="side-ico"></span>Mentor</div>
+          <div class="side-item"><span class="side-ico"></span>Replay</div>
+          <div class="side-label" style="margin-top:14px">Account</div>
+          <div class="side-item"><span class="side-ico"></span>Brokers</div>
+          <div class="side-item"><span class="side-ico"></span>Settings</div>
+        </aside>
+        <div class="dash-main">
+          <div class="dash-head">
+            <div>
+              <h3>Overview</h3>
+              <div class="sub mono">April 1 — Apr 22, 2026 · 84 trades · ES, NQ, equities</div>
+            </div>
+            <div class="sub">Mode · Swing</div>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat">
+              <div class="k">Win rate</div>
+              <div class="v mono">67%</div>
+              <div class="delta pos mono">+4.2 vs 30d</div>
+            </div>
+            <div class="stat">
+              <div class="k">Avg R</div>
+              <div class="v mono">1.84</div>
+              <div class="delta pos mono">+0.21</div>
+            </div>
+            <div class="stat">
+              <div class="k">Profit factor</div>
+              <div class="v mono">2.41</div>
+              <div class="delta pos mono">+0.33</div>
+            </div>
+            <div class="stat">
+              <div class="k">Max drawdown</div>
+              <div class="v mono">−3.8%</div>
+              <div class="delta neg mono">Apr 09</div>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="chart-head">
+              <div>
+                <div class="lbl">Equity curve · MTD</div>
+                <div class="big mono">$184,620.34</div>
+              </div>
+              <div class="delta pos mono">+$20,410 · +12.4%</div>
+            </div>
+            <svg class="chart-svg" viewBox="0 0 800 180" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="eqFill2" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#30d158" stop-opacity=".18"/>
+                  <stop offset="100%" stop-color="#30d158" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <g stroke="rgba(0,0,0,.05)" stroke-width="1">
+                <line x1="0" x2="800" y1="45" y2="45"/>
+                <line x1="0" x2="800" y1="90" y2="90"/>
+                <line x1="0" x2="800" y1="135" y2="135"/>
+              </g>
+              <path d="M0,150 L30,148 60,144 90,150 120,140 150,136 180,142 210,128 240,130 270,118 300,122 330,108 360,112 390,96 420,100 450,88 480,74 510,82 540,68 570,60 600,66 630,48 660,54 690,38 720,32 750,26 780,24 800,20 L800,180 L0,180 Z" fill="url(#eqFill2)"/>
+              <path d="M0,150 L30,148 60,144 90,150 120,140 150,136 180,142 210,128 240,130 270,118 300,122 330,108 360,112 390,96 420,100 450,88 480,74 510,82 540,68 570,60 600,66 630,48 660,54 690,38 720,32 750,26 780,24 800,20" fill="none" stroke="#30d158" stroke-width="1.75"/>
+            </svg>
+          </div>
+
+          <div class="trades">
+            <div class="tr-row head">
+              <div>Symbol · Setup</div>
+              <div>Side</div>
+              <div>P&L</div>
+              <div class="c-rmul">R multiple</div>
+              <div style="text-align:right">Date</div>
+            </div>
+            <div class="tr-row">
+              <div class="tr-sym"><span class="sym-tag">NQ</span><span>Opening drive continuation</span></div>
+              <div><span class="side-pill long">Long</span></div>
+              <div class="mono pos">+$3,240</div>
+              <div class="mono c-rmul">+2.1R</div>
+              <div class="mono" style="text-align:right;color:var(--ink-3)">Apr 22</div>
+            </div>
+            <div class="tr-row">
+              <div class="tr-sym"><span class="sym-tag">AAPL</span><span>Failed breakdown reversal</span></div>
+              <div><span class="side-pill long">Long</span></div>
+              <div class="mono pos">+$1,120</div>
+              <div class="mono c-rmul">+1.4R</div>
+              <div class="mono" style="text-align:right;color:var(--ink-3)">Apr 22</div>
+            </div>
+            <div class="tr-row">
+              <div class="tr-sym"><span class="sym-tag">ES</span><span>VWAP reclaim</span></div>
+              <div><span class="side-pill short">Short</span></div>
+              <div class="mono neg">−$680</div>
+              <div class="mono c-rmul">−1.0R</div>
+              <div class="mono" style="text-align:right;color:var(--ink-3)">Apr 21</div>
+            </div>
+            <div class="tr-row">
+              <div class="tr-sym"><span class="sym-tag">TSLA</span><span>Gap &amp; go</span></div>
+              <div><span class="side-pill long">Long</span></div>
+              <div class="mono pos">+$2,480</div>
+              <div class="mono c-rmul">+2.8R</div>
+              <div class="mono" style="text-align:right;color:var(--ink-3)">Apr 21</div>
+            </div>
+            <div class="tr-row">
+              <div class="tr-sym"><span class="sym-tag">NQ</span><span>Range fade</span></div>
+              <div><span class="side-pill short">Short</span></div>
+              <div class="mono pos">+$1,960</div>
+              <div class="mono c-rmul">+1.7R</div>
+              <div class="mono" style="text-align:right;color:var(--ink-3)">Apr 18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FEATURE — SETUPS -->
+<section data-theme="light" data-screen-label="03 Setups">
+  <div class="feat-split">
+    <div class="copy reveal">
+      <span class="eyebrow">Setups</span>
+      <h2 class="section-title">Name what works.<br/>Repeat it.</h2>
+      <p class="lead">Tag every trade with the setup, the emotion, and the mistake. Over weeks you stop guessing — your edge starts naming itself.</p>
+    </div>
+    <div class="reveal d2">
+      <div class="setup-mock">
+        <div class="setup-head">
+          <div>
+            <div class="t">NQ · 09:42 ET</div>
+            <div class="s mono">Trade #0421-07</div>
+          </div>
+          <div class="side-pill long">Long</div>
+        </div>
+        <div class="setup-body">
+          <div class="setup-row">
+            <div class="k">Setup</div>
+            <div class="tagset">
+              <div class="tag tone-g on">Opening drive continuation</div>
+              <div class="tag">Breakout</div>
+              <div class="tag">VWAP reclaim</div>
+              <div class="tag">Range fade</div>
+            </div>
+          </div>
+          <div class="setup-row">
+            <div class="k">Execution</div>
+            <div class="tagset">
+              <div class="tag on">A+ entry</div>
+              <div class="tag on">Full size</div>
+              <div class="tag">Scaled out early</div>
+              <div class="tag">Moved stop</div>
+            </div>
+          </div>
+          <div class="setup-row">
+            <div class="k">State</div>
+            <div class="tagset">
+              <div class="tag on">Focused</div>
+              <div class="tag">FOMO</div>
+              <div class="tag">Tilted</div>
+              <div class="tag">Hesitant</div>
+            </div>
+          </div>
+          <div class="setup-row">
+            <div class="note-box">
+              <div class="note-text">"Waited for the reclaim of yesterday's high after the first 5m. Entry was textbook. Held until NQ tapped the measured move and scaled two-thirds off."</div>
+              <div class="note-meta mono"><span>Journal note</span><span>·</span><span>142 words</span><span>·</span><span>auto-linked to setup</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. FEATURE — ANALYTICS (DARK) -->
+<section class="dark" data-theme="dark" data-screen-label="04 Analytics">
+  <div class="container center">
+    <span class="eyebrow reveal">Analytics</span>
+    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">The truth, in four decimal places.</h2>
+    <p class="lead reveal d2" style="margin-top:28px">Slice by setup, time of day, symbol, or state. Every cut of the data shows you one thing: where you actually make money, and where you pretend to.</p>
+  </div>
+
+  <div class="analytics-grid">
+    <div class="panel reveal">
+      <div class="k">Expectancy by setup</div>
+      <div class="hero-num mono pos">+0.84R</div>
+      <div class="sub">Across 12 tagged setups · last 90 days</div>
+      <div class="bars" aria-hidden="true">
+        <div class="bar g" style="height:82%"></div>
+        <div class="bar g" style="height:68%"></div>
+        <div class="bar g" style="height:60%"></div>
+        <div class="bar g" style="height:54%"></div>
+        <div class="bar g" style="height:42%"></div>
+        <div class="bar" style="height:28%"></div>
+        <div class="bar" style="height:22%"></div>
+        <div class="bar r" style="height:18%"></div>
+        <div class="bar r" style="height:32%"></div>
+        <div class="bar r" style="height:44%"></div>
+      </div>
+    </div>
+
+    <div class="panel reveal d1">
+      <div class="k">Win rate by hour</div>
+      <div class="hero-num mono">71%</div>
+      <div class="sub">09:30 — 10:30 ET · your A window</div>
+      <div class="heat" style="grid-template-columns:repeat(12,1fr);margin-top:26px" aria-hidden="true">
+        <div class="cell" style="background:rgba(48,209,88,.85)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.7)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.5)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.3)"></div>
+        <div class="cell" style="background:rgba(255,255,255,.06)"></div>
+        <div class="cell" style="background:rgba(255,69,58,.2)"></div>
+        <div class="cell" style="background:rgba(255,69,58,.35)"></div>
+        <div class="cell" style="background:rgba(255,255,255,.08)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.2)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.4)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.55)"></div>
+        <div class="cell" style="background:rgba(48,209,88,.3)"></div>
+      </div>
+      <div class="sub mono" style="margin-top:14px">09:30 · 10 · 11 · 12 · 13 · 14 · 15 · 16 ET</div>
+    </div>
+
+    <div class="panel reveal d2">
+      <div class="k">Avg hold — winners vs losers</div>
+      <div class="hero-num mono">3.2×</div>
+      <div class="sub">You hold winners 3.2× longer. Good.</div>
+      <div style="margin-top:22px;display:flex;flex-direction:column;gap:14px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.55)"><span>Winners</span><span class="mono">42m</span></div>
+          <div style="height:8px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:8px;overflow:hidden"><div style="width:92%;height:100%;background:var(--green)"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.55)"><span>Losers</span><span class="mono">13m</span></div>
+          <div style="height:8px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:8px;overflow:hidden"><div style="width:28%;height:100%;background:var(--red)"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.55)"><span>Scratches</span><span class="mono">6m</span></div>
+          <div style="height:8px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:8px;overflow:hidden"><div style="width:14%;height:100%;background:rgba(255,255,255,.35)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. FEATURE — MENTOR -->
+<section data-theme="light" data-screen-label="05 Mentor">
+  <div class="container center" style="margin-bottom:70px">
+    <span class="eyebrow reveal">Mentor mode</span>
+    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">A second pair of eyes,<br/>trade by trade.</h2>
+    <p class="lead reveal d2" style="margin-top:28px">Share a single trade — not your whole account — with a coach or trusted peer. Get feedback inline, where the chart lives.</p>
+  </div>
+
+  <div class="mentor-wrap">
+    <div class="trade-card reveal">
+      <div class="th">
+        <div>
+          <h4>NQ · Opening drive</h4>
+          <div class="meta mono">Apr 22, 2026 · 09:42 – 10:11 ET</div>
+        </div>
+        <div class="pl">
+          <div class="amt mono">+$3,240</div>
+          <div class="r mono">+2.1R · 3 contracts</div>
+        </div>
+      </div>
+      <svg viewBox="0 0 600 160" style="width:100%;height:140px;margin-bottom:18px">
+        <g stroke="rgba(0,0,0,.05)" stroke-width="1">
+          <line x1="0" x2="600" y1="40" y2="40"/>
+          <line x1="0" x2="600" y1="80" y2="80"/>
+          <line x1="0" x2="600" y1="120" y2="120"/>
+        </g>
+        <path d="M0,110 L30,108 60,104 90,96 120,90 150,78 180,82 210,70 240,62 270,58 300,50 330,56 360,44 390,38 420,42 450,30 480,26 510,34 540,22 570,18 600,20" fill="none" stroke="#1d1d1f" stroke-width="1.5"/>
+        <circle cx="90" cy="96" r="5" fill="#30d158"/>
+        <circle cx="480" cy="26" r="5" fill="#1d1d1f"/>
+        <text x="98" y="92" font-family="JetBrains Mono" font-size="10" fill="#1d1d1f">entry · 19,412</text>
+        <text x="370" y="22" font-family="JetBrains Mono" font-size="10" fill="#1d1d1f">exit · 19,503</text>
+      </svg>
+      <div class="tc-row"><span class="k">Setup</span><span class="v">Opening drive continuation</span></div>
+      <div class="tc-row"><span class="k">Risk</span><span class="v mono">1.2% · $1,540</span></div>
+      <div class="tc-row"><span class="k">Hold time</span><span class="v mono">29 min</span></div>
+      <div class="tc-row"><span class="k">Execution grade</span><span class="v">A</span></div>
+    </div>
+
+    <div class="thread reveal d2">
+      <div class="thread-h">Mentor thread · 2 notes</div>
+      <div class="msg">
+        <div class="avatar m">DK</div>
+        <div class="msg-body">
+          <div class="msg-head">
+            <span class="msg-name">Daniel Koh</span>
+            <span class="msg-role">Mentor</span>
+            <span class="msg-time mono">10:34 AM</span>
+          </div>
+          <div class="msg-text">Good patience on the entry. Two things worth noting — you scaled a third at the first measured move, which is fine, but the remaining runner had room to 19,540. Next time size the scale smaller or leave the core alone until structure breaks.</div>
+        </div>
+      </div>
+      <div class="msg">
+        <div class="avatar">You</div>
+        <div class="msg-body">
+          <div class="msg-head">
+            <span class="msg-name">You</span>
+            <span class="msg-role">Trader</span>
+            <span class="msg-time mono">10:51 AM</span>
+          </div>
+          <div class="msg-text">Fair. I panicked when the 1m rolled — but the 5m never lost VWAP. Going to mark this trade as "exited on noise."</div>
+        </div>
+      </div>
+      <div class="msg">
+        <div class="avatar m">DK</div>
+        <div class="msg-body">
+          <div class="msg-head">
+            <span class="msg-name">Daniel Koh</span>
+            <span class="msg-role">Mentor</span>
+            <span class="msg-time mono">10:53 AM</span>
+          </div>
+          <div class="msg-text">That's the right tag. This is the 4th one this month. Might be worth a rule: no exits on 1m unless the 5m confirms.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. SOCIAL PROOF -->
+<section data-theme="light" data-screen-label="06 Proof">
+  <div class="container center">
+    <h2 class="proof reveal">3,000 traders.<br/><em>One community.</em> Coming soon.</h2>
+  </div>
+</section>
+
+<!-- 7. FINAL CTA -->
+<section class="dark final" id="waitlist" data-theme="dark" data-screen-label="07 Waitlist">
+  <div class="container center" style="display:flex;flex-direction:column;align-items:center">
+    <span class="eyebrow reveal">The waitlist</span>
+    <h2 class="reveal d1">Be first.</h2>
+    <p class="lead reveal d2 center" style="max-width:560px">Access rolls out in small cohorts. Drop your email and we'll invite you when it's your turn.</p>
+    <!--
+      TODO: wire to Kit (ex-ConvertKit) form endpoint.
+      Replace the onsubmit handler below with Kit's form action, e.g.:
+        <form class="email-form reveal d3" action="https://app.kit.com/forms/FORM_ID/subscriptions" method="post" data-sv-form="FORM_ID" data-uid="UID" data-format="inline">
+      Or keep custom submit and POST to Kit via fetch. Owner to provide form ID.
+    -->
+    <form class="email-form reveal d3" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\'re in.';">
+      <input type="email" name="email_address" placeholder="you@domain.com" required aria-label="Email address"/>
+      <button type="submit">Request invite</button>
+    </form>
+    <div class="reveal d4 mono" style="margin-top:22px;font-size:12px;color:rgba(255,255,255,.4)">84 invites going out this week.</div>
+  </div>
+</section>
+
+<!-- 8. FOOTER -->
+<footer data-screen-label="08 Footer">
+  <div class="foot-inner">
+    <a href="/" class="foot-left" aria-label="Back to thewillstreet.com">
+      <div class="brand-mark">W</div>
+      <span>The WillStreet Journal</span>
+    </a>
+    <div class="socials" aria-label="social">
+      <a class="soc" href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.571L22.5 22h-6.93l-5.427-6.79L3.9 22H.63l8.07-9.2L.5 2h7.1l4.9 6.15L18.244 2Zm-1.218 18h1.8L7.06 4H5.145L17.026 20Z"/></svg></a>
+      <a class="soc" href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .501 6.186C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.6 15.6V8.4l6.4 3.6-6.4 3.6Z"/></svg></a>
+      <a class="soc" href="#" aria-label="Substack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836ZM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46ZM22.54 0H1.46v2.836h21.08V0Z"/></svg></a>
+      <a class="soc" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg></a>
+    </div>
+    <div class="copy mono">© 2026 The WillStreet Journal</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll + theme
+  const nav = document.getElementById('nav');
+  const sections = document.querySelectorAll('section[data-theme]');
+  function onScroll(){
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 10);
+
+    // which section is the nav sitting over
+    let current = 'light';
+    for (const s of sections){
+      const r = s.getBoundingClientRect();
+      if (r.top <= 56 && r.bottom > 56){ current = s.dataset.theme; break; }
+    }
+    nav.classList.toggle('on-dark', current === 'dark');
+
+    // hero parallax
+    const hp = document.getElementById('heroPreview');
+    if (hp){
+      const t = Math.min(y * 0.08, 60);
+      hp.style.transform = `translateY(${40 - t}px)`;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Hero preview fade-in on load
+  window.addEventListener('load', ()=>{
+    const hp = document.getElementById('heroPreview');
+    if (hp) hp.classList.add('in');
+  });
+
+  // Reveal on scroll (IntersectionObserver)
+  const io = new IntersectionObserver((entries)=>{
+    for (const e of entries){
+      if (e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    }
+  },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
