@@ -357,6 +357,8 @@
   }
   .email-form button:hover{transform:translateX(3px)}
   .email-note{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute-on-dark);letter-spacing:0.06em;text-transform:uppercase}
+  .beehiiv-wrap{margin-top:48px;width:min(560px,100%)}
+  .beehiiv-wrap iframe{display:block;width:100%}
 
   /* FOOTER */
   footer{background:var(--ink-dark);color:var(--mute-on-dark);padding:56px 32px;border-top:1px solid var(--rule-on-dark)}
@@ -802,12 +804,20 @@
   <div class="container center" style="display:flex;flex-direction:column;align-items:center">
     <span class="eyebrow reveal">The waitlist</span>
     <h2 class="reveal d1">Be <em>first.</em></h2>
-    <p class="lead reveal d2 center">Access rolls out in small cohorts. Drop your email and we'll invite you when it's your turn.</p>
-    <form class="email-form reveal d3" onsubmit="event.preventDefault(); this.querySelector('button span').textContent='You\'re in.';">
-      <input type="email" name="email_address" placeholder="you@domain.com" required aria-label="Email address"/>
-      <button type="submit"><span>Request invite</span> ↗</button>
-    </form>
-    <div class="reveal d4 email-note">84 invites going out this week</div>
+    <p class="lead reveal d2 center">Access rolls out in small cohorts. Drop your email and I'll invite you when it's your turn.</p>
+    <div class="reveal d3 beehiiv-wrap">
+      <iframe
+        src="https://subscribe-forms.beehiiv.com/f3ab46c1-9ecd-46fa-873c-88537b4230bd"
+        data-test-id="beehiiv-embed"
+        width="100%"
+        height="320"
+        frameborder="0"
+        scrolling="no"
+        loading="lazy"
+        title="Join the waitlist for The WillStreet Journal"
+        style="border:0;background-color:transparent;border-radius:8px;display:block">
+      </iframe>
+    </div>
   </div>
 </section>
 
@@ -858,5 +868,7 @@
   },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
+<script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+<script async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 </body>
 </html>
