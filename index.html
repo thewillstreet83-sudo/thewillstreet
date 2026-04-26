@@ -1,500 +1,695 @@
-<!--
-  ============================================================
-  TheWillStreet index.html (v2)
-  Copy proposals. Live version uses the one marked [PICK].
-  ============================================================
-
-  HERO HEADLINES
-    A. "Free trading. Not free lunch."
-    B. "Discipline is the asset."                          [PICK]
-    C. "A free community for traders who want freedom."
-
-  PHILOSOPHY COPY
-    A. "Most trading content sells lambos. I teach the part
-        that gets you there: a strategy you respect, profits
-        you compound, and the patience to let small edges work.
-        The car can come later. Or not. Either way, you're free."
-
-    B. "Lambos are cool. They're also bait. Real freedom is
-        quieter: a rule you don't break, a position you sized
-        right, a profit you didn't give back. Stack enough of
-        those and one day trading pays your rent. That's the
-        whole pitch."                                      [PICK]
-
-    C. "I'm not here to sell you a lifestyle. I'm here to
-        trade, honestly, in public, and show my work. If you
-        want to do the same, stick around. If you want a
-        shortcut, you're in the wrong place."
-
-  STATS (pick 2 beyond the two fixed ones)
-    Fixed: 3,000+ traders  /  $0 Discord
-    Candidates:
-      a. "0 paid ads, ever"                                 [PICK]
-      b. "0 signals sold"                                   [PICK]
-      c. "0 upsells"
-      d. "100% of setups posted live"
-
-  CONNECT SECTION TITLE
-    A. "Where to find me"                                  [PICK]
-    B. "Come say hi"
-    C. "Four inboxes, one person"
-
-  FINAL CTA HEADLINE
-    A. "Pull up a chair."
-    B. "The door's open."                                   [PICK]
-    C. "Come sit with us."
-
-  META DESCRIPTION
-    "A free trading community run by one trader. Setups, breakdowns,
-     and the honest work of getting better."
-  ============================================================
--->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>TheWillStreet</title>
-<meta name="description" content="A free trading community run by one trader. Setups, breakdowns, and the honest work of getting better." />
+<title>TheWillStreet. Discipline is the asset.</title>
+<meta name="description" content="A free trading community run by one trader. Real setups posted publicly, with the work behind them." />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://thewillstreet.com/" />
 <meta property="og:title" content="TheWillStreet" />
-<meta property="og:description" content="A free trading community run by one trader. Setups, breakdowns, and the honest work of getting better." />
-<!-- TODO: add og:image once a cover image is designed -->
-<!-- <meta property="og:image" content="https://thewillstreet.com/og.png" /> -->
+<meta property="og:description" content="A free trading community run by one trader. Real setups posted publicly, with the work behind them." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="TheWillStreet" />
-<meta name="twitter:description" content="A free trading community run by one trader. Setups, breakdowns, and the honest work of getting better." />
+<meta name="twitter:description" content="A free trading community run by one trader. Real setups posted publicly, with the work behind them." />
 
 <link rel="canonical" href="https://www.thewillstreet.com/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --white:#ffffff;
-    --ink:#1d1d1f;
-    --ink-2:#6e6e73;
-    --ink-3:#a1a1a6;
-    --black:#000000;
-    --line-dark:rgba(255,255,255,0.08);
-    --line-light:rgba(0,0,0,0.08);
-    --green:#30d158;
-    --red:#ff453a;
+    /* Off-white Apple-tier palette */
+    --cream:#F7F7F8;
+    --cream-2:#F0F0F2;
+    --ink:#0A0A0B;
+    --ink-soft:#5C5C66;
+    --ink-mute:#9A9AA3;
+    --rule:rgba(10,10,11,0.08);
+    --rule-strong:rgba(10,10,11,0.18);
+
+    /* Dark sections: true black, no warmth */
+    --ink-dark:#0A0A0B;
+    --cream-on-dark:#F2F2F4;
+    --rule-on-dark:rgba(242,242,244,0.10);
+    --mute-on-dark:rgba(242,242,244,0.50);
+
+    /* Live indicators (kept as small dots/numbers, not used as primary accent) */
+    --up:#3D8B4F;
+    --down:#B5483F;
   }
+
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:#fff;color:var(--ink);}
+  html{background:var(--cream)}
   body{
+    background:var(--cream);
+    color:var(--ink);
     font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-    font-size:19px;line-height:1.55;font-weight:400;
+    font-size:18px;line-height:1.55;font-weight:400;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     letter-spacing:-0.01em;overflow-x:hidden;
   }
   .mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-feature-settings:"tnum" 1;}
+  .serif{font-family:'Inter',-apple-system,system-ui,sans-serif;letter-spacing:-0.035em;font-feature-settings:"ss01" 1,"cv11" 1;}
   a{color:inherit;text-decoration:none}
   button{font:inherit;border:0;cursor:pointer;background:none;color:inherit}
+  input{font:inherit}
 
-  /* NAV */
+  /* ---------- META BAR (top of page) ---------- */
+  .meta-bar{
+    position:fixed;top:0;left:0;right:0;z-index:90;
+    height:36px;display:flex;align-items:center;
+    background:var(--cream);
+    border-bottom:1px solid var(--rule);
+    transition:background .35s, border-color .35s, color .35s;
+  }
+  .meta-bar.on-dark{background:var(--ink-dark);color:var(--cream-on-dark);border-bottom-color:var(--rule-on-dark)}
+  .meta-inner{
+    width:100%;max-width:1280px;margin:0 auto;padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;
+    text-transform:uppercase;color:var(--ink-soft);
+  }
+  .meta-bar.on-dark .meta-inner{color:var(--mute-on-dark)}
+  .meta-left,.meta-right{display:flex;align-items:center;gap:18px;flex:1}
+  .meta-right{justify-content:flex-end}
+  .meta-center{text-align:center;color:var(--ink)}
+  .meta-bar.on-dark .meta-center{color:var(--cream-on-dark)}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--ink-soft);display:inline-block}
+  .meta-bar.on-dark .dot{background:var(--mute-on-dark)}
+  @media (max-width:720px){
+    .meta-left .hide-sm,.meta-right .hide-sm{display:none}
+    .meta-inner{padding:0 16px;gap:12px;font-size:10px}
+  }
+
+  /* ---------- NAV ---------- */
   .nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
+    position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
     display:flex;align-items:center;justify-content:center;
-    transition:background .35s ease, backdrop-filter .35s ease, border-color .35s ease;
+    transition:background .35s, backdrop-filter .35s, border-color .35s, color .35s;
     border-bottom:1px solid transparent;
   }
   .nav.scrolled{
-    background:rgba(255,255,255,0.72);
+    background:rgba(247,247,248,0.78);
     backdrop-filter:saturate(180%) blur(20px);
     -webkit-backdrop-filter:saturate(180%) blur(20px);
-    border-bottom:1px solid var(--line-light);
+    border-bottom:1px solid var(--rule);
   }
-  .nav.on-dark.scrolled{background:rgba(0,0,0,0.64);border-bottom-color:var(--line-dark)}
-  .nav.on-dark{color:#fff}
-  .nav-inner{width:100%;max-width:1200px;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
-  .brand{display:inline-flex;align-items:center;font-weight:700;font-size:18px;letter-spacing:-0.025em}
+  .nav.on-dark{color:var(--cream-on-dark)}
+  .nav.on-dark.scrolled{
+    background:rgba(10,10,11,0.78);
+    border-bottom-color:var(--rule-on-dark);
+  }
+  .nav-inner{
+    width:100%;max-width:1280px;padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    display:inline-flex;align-items:baseline;gap:2px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:18px;
+    letter-spacing:-0.03em;
+  }
+  .brand .ws{font-weight:400;color:var(--ink-soft)}
   .nav-links{display:flex;align-items:center;gap:32px}
-  .nav-link{font-size:14px;font-weight:500;color:var(--ink-2);transition:color .2s}
-  .nav-link:hover{color:var(--ink)}
-  .nav.on-dark .nav-link{color:rgba(255,255,255,.7)}
-  .nav.on-dark .nav-link:hover{color:#fff}
+  .nav-link{
+    font-size:13px;font-weight:500;color:var(--ink-soft);
+    transition:color .2s;
+    text-underline-offset:4px;
+  }
+  .nav-link:hover{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px}
+  .nav.on-dark .nav-link{color:var(--mute-on-dark)}
+  .nav.on-dark .nav-link:hover{color:var(--cream-on-dark)}
   .nav-cta{
     display:inline-flex;align-items:center;gap:6px;
-    height:34px;padding:0 14px;border-radius:999px;
-    background:var(--green);color:#0a2915;
-    font-size:13px;font-weight:600;letter-spacing:-0.01em;
-    transition:transform .25s, background .25s;
+    font-size:13px;font-weight:500;
+    color:var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding-bottom:1px;
+    transition:opacity .2s;
   }
-  .nav-cta:hover{transform:scale(1.03);background:#3dd968}
+  .nav.on-dark .nav-cta{color:var(--cream-on-dark);border-bottom-color:var(--cream-on-dark)}
+  .nav-cta:hover{opacity:.7}
   @media (max-width:720px){ .nav-links .nav-link{display:none} }
 
+  /* ---------- SECTIONS ---------- */
   section{
-    position:relative;padding:160px 28px 200px;min-height:100vh;
+    position:relative;
+    padding:140px 32px 160px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
   }
-  section.dark{background:#000;color:#fff}
+  section.dark{background:var(--ink-dark);color:var(--cream-on-dark)}
   .container{width:100%;max-width:1200px;margin:0 auto}
-  .wide{max-width:1400px}
+  .wide{max-width:1320px}
 
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
   .reveal.in{opacity:1;transform:none}
   .reveal.d1{transition-delay:.08s}
   .reveal.d2{transition-delay:.16s}
   .reveal.d3{transition-delay:.24s}
   .reveal.d4{transition-delay:.32s}
 
-  /* Static eyebrow, no pulse dot */
+  /* ---------- TYPE ---------- */
   .eyebrow{
-    font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--ink-3);margin-bottom:22px;display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--ink-soft);
+    display:inline-flex;align-items:center;gap:10px;
+    margin-bottom:28px;
   }
-  .dark .eyebrow{color:rgba(255,255,255,.5)}
+  .dark .eyebrow{color:var(--mute-on-dark)}
+  .eyebrow::before{
+    content:"";width:18px;height:1px;background:currentColor;opacity:.5;
+  }
 
-  h1.hero{font-size:clamp(56px,9.2vw,128px);line-height:.96;letter-spacing:-0.035em;font-weight:700;text-align:center}
-  h2.section-title{font-size:clamp(44px,6.2vw,80px);line-height:1.02;letter-spacing:-0.03em;font-weight:600}
-  .lead{font-size:clamp(19px,1.6vw,22px);color:var(--ink-2);line-height:1.5;max-width:680px}
-  .dark .lead{color:rgba(255,255,255,.68)}
+  h1.hero{
+    font-family:'Inter',-apple-system,system-ui,sans-serif;
+    font-size:clamp(56px,8.4vw,128px);
+    line-height:0.98;letter-spacing:-0.055em;font-weight:600;
+    text-align:center;
+    text-wrap:balance;
+    max-width:13ch;
+    padding-bottom:0.06em;
+    font-feature-settings:"ss01" 1,"cv11" 1;
+  }
+  h1.hero em{font-style:normal;font-weight:600;color:var(--ink-soft)}
+
+  h2.section-title{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(44px,6vw,84px);
+    line-height:0.98;letter-spacing:-0.045em;font-weight:600;
+  }
+  h2.section-title em{font-style:normal;color:var(--ink-soft);font-weight:600}
+
+  /* Connect section title (Instrument Serif override removed) */
+
+  .lead{
+    font-size:clamp(18px,1.4vw,21px);
+    color:var(--ink-soft);line-height:1.55;font-weight:400;
+    max-width:620px;
+  }
+  .dark .lead{color:var(--mute-on-dark)}
   .center{text-align:center}
   .center .lead{margin-left:auto;margin-right:auto}
 
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    height:52px;padding:0 28px;border-radius:999px;
-    background:var(--green);color:#0a2915;
-    font-weight:600;font-size:15px;letter-spacing:-0.01em;
-    transition:transform .25s cubic-bezier(.22,.61,.36,1), background .25s, box-shadow .25s;
+  /* ---------- LINKS / CTAS ---------- */
+  .link-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:15px;font-weight:500;
+    color:var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding-bottom:3px;
+    transition:gap .25s, opacity .2s;
   }
-  .btn:hover{transform:scale(1.02);background:#3dd968}
-  .btn:active{transform:scale(.99)}
-  .btn svg{width:14px;height:14px}
-  .btn.ghost{background:transparent;color:inherit;border:1px solid var(--line-light)}
-  .dark .btn.ghost{border-color:var(--line-dark);color:#fff}
-  .btn.ghost:hover{background:rgba(0,0,0,.03)}
-  .dark .btn.ghost:hover{background:rgba(255,255,255,.05)}
+  .link-cta:hover{gap:14px;opacity:.75}
+  .link-cta.soft{color:var(--ink-soft);border-bottom-color:var(--rule-strong)}
+  .link-cta.soft:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .dark .link-cta{color:var(--cream-on-dark);border-bottom-color:var(--cream-on-dark)}
+  .dark .link-cta.soft{color:var(--mute-on-dark);border-bottom-color:var(--rule-on-dark)}
+  .dark .link-cta.soft:hover{color:var(--cream-on-dark);border-bottom-color:var(--cream-on-dark)}
+  .link-cta .arr{display:inline-block;transition:transform .25s}
+  .link-cta:hover .arr{transform:translateX(2px) translateY(-2px)}
 
-  /* HERO */
-  .hero-sec{padding-top:140px;padding-bottom:120px;min-height:100vh;overflow:hidden}
-  .hero-radial{
-    position:absolute;inset:0;z-index:0;pointer-events:none;
-    background:radial-gradient(55% 55% at 50% 60%, rgba(48,209,88,0.07), rgba(48,209,88,0) 70%);
+  /* ---------- HERO ---------- */
+  .hero-sec{
+    padding-top:140px;padding-bottom:0;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;flex-direction:column;
   }
-  .hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
-  .hero-sub{margin-top:28px;font-size:clamp(19px,1.5vw,22px);color:var(--ink-2);max-width:620px;text-align:center}
-  .hero-cta-row{margin-top:40px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .hero-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;padding-bottom:80px}
+  .hero-sub{
+    margin-top:32px;
+    font-size:clamp(18px,1.4vw,21px);
+    color:var(--ink-soft);
+    max-width:580px;text-align:center;line-height:1.5;
+  }
+  .hero-cta-row{
+    margin-top:48px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;
+  }
+  /* Apple-style pill button */
+  .hero-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--cream);
+    padding:14px 28px;
+    border-radius:999px;
+    font-size:15px;font-weight:500;letter-spacing:-0.01em;
+    transition:transform .25s cubic-bezier(.22,.61,.36,1), background .25s, gap .25s;
+  }
+  .hero-btn:hover{background:#1a1a1c;gap:12px}
+  .hero-btn .arr{display:inline-block;transition:transform .25s}
+  .hero-btn:hover .arr{transform:translate(2px,-2px)}
 
-  /* TICKER */
+  /* ---------- TICKER ---------- */
   .ticker-wrap{
-    margin-top:80px;width:100%;max-width:1100px;
-    border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);
+    margin-top:auto;width:100vw;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
     overflow:hidden;padding:18px 0;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    position:relative;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   }
-  .ticker{display:flex;gap:56px;animation:scroll 42s linear infinite;width:max-content}
-  .tick{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);white-space:nowrap;flex-shrink:0}
-  .tick .sym{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--ink);padding:2px 7px;border-radius:5px;background:rgba(0,0,0,.05);font-size:12px}
-  .tick .px{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--ink)}
-  .tick .chg{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px}
+  .ticker{display:flex;gap:48px;animation:scroll 60s linear infinite;width:max-content}
+  .tick{
+    display:flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--ink);white-space:nowrap;flex-shrink:0;
+  }
+  .tick .sym{font-weight:500;color:var(--ink);letter-spacing:0.04em}
+  .tick .px{font-weight:400;color:var(--ink-soft)}
+  .tick .chg{font-weight:500;font-size:11px}
+  .tick .chg.up{color:var(--up)}
+  .tick .chg.down{color:var(--down)}
+  .tick-sep{width:4px;height:4px;border-radius:50%;background:var(--ink-mute);flex-shrink:0;align-self:center}
   @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  /* JOURNAL SECTION */
-  .journal-sec{background:#fafafa}
+  /* ---------- JOURNAL ---------- */
+  .journal-sec{background:var(--cream-2)}
   .journal-wrap{
     display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:center;
-    width:100%;max-width:1300px;
+    width:100%;max-width:1280px;
   }
-  .journal-copy h2{margin-bottom:24px}
-  .journal-copy .lead{max-width:460px;margin-bottom:40px}
+  .journal-copy h2{margin-bottom:28px}
+  .journal-copy .lead{max-width:440px;margin-bottom:40px}
   .journal-mock{
-    background:#fff;border:1px solid var(--line-light);border-radius:14px;
-    box-shadow:0 1px 2px rgba(0,0,0,.04),0 30px 60px -20px rgba(0,0,0,.14);
+    background:var(--cream);
+    border:1px solid var(--rule);
+    border-radius:24px;
     overflow:hidden;
+    box-shadow:0 1px 0 rgba(255,255,255,0.6) inset, 0 30px 60px -30px rgba(10,10,11,0.18), 0 8px 24px -12px rgba(10,10,11,0.08);
+    backdrop-filter:saturate(140%);
   }
   .jm-head{
-    height:38px;padding:0 14px;
+    height:36px;padding:0 16px;
     display:flex;align-items:center;gap:8px;
-    border-bottom:1px solid var(--line-light);background:rgba(0,0,0,.015);
+    border-bottom:1px solid var(--rule);
+    background:transparent;
   }
-  .jm-head .d{width:11px;height:11px;border-radius:50%;background:#e4e4e7}
-  .jm-head .t{margin-left:12px;font-size:12px;color:var(--ink-3);font-weight:500}
+  .jm-head .d{width:9px;height:9px;border-radius:50%;background:var(--ink-mute);opacity:.5}
+  .jm-head .t{margin-left:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);font-weight:400;letter-spacing:0.02em}
   .jm-body{padding:32px 36px}
-  .jm-label{font-size:12px;color:var(--ink-3);font-weight:500;margin-bottom:8px}
-  .jm-equity{font-size:40px;font-weight:500;letter-spacing:-0.03em;line-height:1}
-  .jm-delta{margin-top:6px;font-size:13px;color:var(--green);font-weight:500}
-  .jm-chart{margin-top:22px;width:100%;height:150px;display:block}
+  .jm-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);font-weight:500;margin-bottom:10px;letter-spacing:0.08em;text-transform:uppercase}
+  .jm-equity{font-family:'Inter',sans-serif;font-size:44px;font-weight:600;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums}
+  .jm-delta{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);font-weight:400}
+  .jm-delta .up{color:var(--up)}
+  .jm-chart{margin-top:24px;width:100%;height:140px;display:block}
   .jm-stats{
-    margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-    padding-top:22px;border-top:1px solid var(--line-light);
+    margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    padding-top:24px;border-top:1px solid var(--rule);
   }
-  .jm-stat .k{font-size:11px;color:var(--ink-3);font-weight:500;margin-bottom:6px;letter-spacing:.02em;text-transform:uppercase}
-  .jm-stat .v{font-size:24px;font-weight:500;letter-spacing:-0.02em}
+  .jm-stat{padding-right:20px;border-right:1px solid var(--rule)}
+  .jm-stat:last-child{border-right:0;padding-right:0;padding-left:20px}
+  .jm-stat:nth-child(2){padding-left:20px}
+  .jm-stat .k{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);font-weight:500;margin-bottom:8px;letter-spacing:0.08em;text-transform:uppercase}
+  .jm-stat .v{font-family:'Inter',sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
 
-  /* PHILOSOPHY */
-  .philo-sec{background:#000;color:#fff;overflow:hidden;position:relative}
-  .philo-sec .big-quote{
-    position:absolute;top:60px;left:8%;
-    font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(220px,28vw,420px);
-    line-height:1;color:rgba(48,209,88,.08);
-    pointer-events:none;user-select:none;
-    letter-spacing:-0.05em;
-  }
+  /* ---------- PHILOSOPHY (DARK) ---------- */
+  .philo-sec{background:var(--ink-dark);color:var(--cream-on-dark);overflow:hidden;position:relative}
   .philo-grid{
     position:relative;z-index:1;
     width:100%;max-width:1200px;
     display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;
   }
-  .philo-left{position:sticky;top:120px}
+  .philo-left{position:sticky;top:140px}
   .philo-left .num{
-    font-family:'JetBrains Mono',monospace;font-size:12px;
-    color:rgba(255,255,255,.4);font-weight:500;letter-spacing:.02em;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--mute-on-dark);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
   }
   .philo-left h3{
-    margin-top:14px;
-    font-size:clamp(36px,4.4vw,56px);font-weight:600;letter-spacing:-0.025em;line-height:1.05;
+    margin-top:20px;
+    font-family:'Inter',sans-serif;
+    font-size:clamp(38px,4.6vw,58px);font-weight:600;letter-spacing:-0.045em;line-height:1.0;
   }
-  .philo-left h3 em{font-style:normal;color:var(--green)}
+  .philo-left h3 em{font-style:normal;font-weight:600;color:var(--mute-on-dark)}
   .philo-body p{
-    font-size:clamp(24px,2.4vw,32px);line-height:1.4;letter-spacing:-0.015em;font-weight:400;
-    color:rgba(255,255,255,.88);
+    font-family:'Inter',sans-serif;
+    font-size:clamp(24px,2.2vw,30px);line-height:1.4;letter-spacing:-0.025em;font-weight:400;
+    color:var(--cream-on-dark);
   }
-  .philo-body p + p{margin-top:22px}
-  .philo-body p.fade{color:rgba(255,255,255,.5);font-size:clamp(20px,1.8vw,24px);margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
-  .philo-body strong{color:var(--green);font-weight:500;font-style:normal}
-
-  /* STATS */
-  .stats-row{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    width:100%;max-width:1200px;margin-top:80px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;
+  .philo-body p + p{margin-top:28px}
+  .philo-body p.fade{
+    color:var(--mute-on-dark);
+    font-size:clamp(20px,1.6vw,24px);
+    margin-top:48px;padding-top:32px;
+    border-top:1px solid var(--rule-on-dark);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
   }
-  .stat-block{background:#000;padding:44px 32px;display:flex;flex-direction:column;gap:14px}
-  .stat-block .k{font-size:12px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.02em;text-transform:uppercase}
-  .stat-block .v{font-size:clamp(44px,5vw,68px);font-weight:500;letter-spacing:-0.03em;line-height:1}
-  .stat-block .v.g{color:var(--green)}
-  .stat-block .sub{font-size:13px;color:rgba(255,255,255,.55)}
+  .philo-body em{font-style:normal;color:var(--mute-on-dark)}
 
-  /* CONNECT */
+  /* ---------- INSIDE THE COMMUNITY (PINNED) ---------- */
+  .itc-sec{
+    background:var(--ink-dark);color:var(--cream-on-dark);
+    height:160vh;
+    padding:0 !important;
+    display:block !important;
+    position:relative;
+  }
+  .itc-pin{
+    position:sticky;top:0;
+    height:100vh;
+    width:100%;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .itc-stage{
+    width:100%;max-width:1280px;
+    padding:0 48px;
+    display:flex;flex-direction:column;gap:64px;
+    position:relative;
+  }
+  .itc-head{
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--mute-on-dark);
+  }
+  .itc-counter{display:inline-flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+  .itc-counter-sep{opacity:.4}
+  .itc-counter #itcCount{color:var(--cream-on-dark);font-weight:500}
+
+  .itc-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;
+  }
+  .itc-display{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(56px,6.4vw,96px);
+    font-weight:600;letter-spacing:-0.05em;line-height:0.95;
+    color:var(--cream-on-dark);
+  }
+  .itc-display em{
+    font-style:italic;font-weight:400;
+    color:var(--mute-on-dark);
+  }
+
+  .itc-list{display:flex;flex-direction:column;gap:0}
+  .itc-item{
+    display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start;
+    padding:24px 0;
+    border-top:1px solid var(--rule-on-dark);
+    transition:opacity .35s ease;
+  }
+  .itc-item:last-child{border-bottom:1px solid var(--rule-on-dark)}
+  .itc-item.dim{opacity:.32}
+  .itc-item-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:0.16em;
+    color:var(--mute-on-dark);
+    padding-top:10px;
+    transition:color .3s ease;
+  }
+  .itc-item.active .itc-item-num{color:var(--cream-on-dark)}
+  .itc-item-text{display:flex;flex-direction:column;gap:0}
+  .itc-item-title{
+    font-family:'Inter',sans-serif;
+    font-weight:500;letter-spacing:-0.03em;line-height:1.1;
+    color:var(--cream-on-dark);
+    font-size:32px;
+  }
+  .itc-item-body{
+    font-family:'Inter',sans-serif;
+    font-size:15px;color:var(--mute-on-dark);line-height:1.5;letter-spacing:-0.01em;
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height .4s cubic-bezier(.22,.61,.36,1), opacity .3s ease, margin-top .35s ease;
+  }
+  .itc-item.active .itc-item-body{max-height:80px;opacity:1;margin-top:10px}
+
+  .itc-progress{
+    height:1px;background:var(--rule-on-dark);
+    position:relative;overflow:hidden;
+  }
+  .itc-progress-bar{
+    position:absolute;left:0;top:0;bottom:0;
+    width:0%;background:var(--cream-on-dark);
+    transition:width .15s linear;
+  }
+
+  @media (max-width:900px){
+    .itc-sec{height:200vh}
+    .itc-stage{gap:40px;padding:0 24px}
+    .itc-grid{grid-template-columns:1fr;gap:48px}
+    .itc-display{font-size:clamp(40px,11vw,68px)}
+    .itc-item-title{font-size:24px}
+  }
+
+  /* Journal mock animation hooks */
+  #jmPath{stroke-dasharray:1;stroke-dashoffset:1;}
+  #jmPath.draw-ready{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);}
+  #jmDot{transition:opacity .3s ease}
+  #jmDot circle:first-child{transform-origin:600px 12px;animation:none}
+  #jmDot.show circle:first-child{animation:jmPulse 2.4s ease-in-out infinite}
+  @keyframes jmPulse{
+    0%{transform:scale(1);opacity:.15}
+    50%{transform:scale(1.6);opacity:0}
+    100%{transform:scale(1);opacity:0}
+  }
+  #jmArea{transition:opacity .4s ease}
+
+  /* ---------- CONNECT ---------- */
   .connect-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-    width:100%;max-width:1200px;margin-top:70px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    width:100%;max-width:1200px;margin-top:72px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
   }
   .ccard{
-    position:relative;overflow:hidden;
-    background:#fff;border:1px solid var(--line-light);border-radius:14px;
-    padding:32px 28px 28px;min-height:260px;
-    display:flex;flex-direction:column;gap:28px;
-    transition:transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s, border-color .4s;
+    position:relative;
+    padding:36px 32px 32px;min-height:200px;
+    display:flex;flex-direction:column;justify-content:space-between;gap:32px;
+    border-right:1px solid var(--rule);
+    transition:background .3s;
   }
-  .ccard:hover{
-    transform:translateY(-4px);
-    box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 50px -20px rgba(0,0,0,.14);
-    border-color:rgba(0,0,0,.14);
-  }
+  .ccard:last-child{border-right:0}
+  .ccard:hover{background:var(--cream-2)}
   .ccard .ic{
-    width:44px;height:44px;border-radius:11px;
-    background:#000;color:#fff;display:grid;place-items:center;
+    width:32px;height:32px;
+    color:var(--ink);
+    display:flex;align-items:center;justify-content:flex-start;
   }
-  .ccard .mid{display:flex;flex-direction:column;gap:4px;margin-top:auto}
-  .ccard .plat-name{font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.1}
-  .ccard .plat-handle{font-size:13px;color:var(--ink-3);font-family:'JetBrains Mono',monospace}
+  .ccard .ic svg{width:24px;height:24px}
+  .ccard .mid{display:flex;flex-direction:column;gap:6px}
+  .ccard .plat-name{
+    font-family:'Inter',sans-serif;font-size:22px;font-weight:600;
+    letter-spacing:-0.035em;line-height:1.1;
+  }
+  .ccard .plat-handle{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--ink-soft);
+  }
   .ccard .arrow{
-    position:absolute;top:32px;right:28px;
-    color:var(--ink-3);transition:transform .3s, color .3s;
-    font-size:18px;font-weight:400;
+    position:absolute;top:36px;right:32px;
+    color:var(--ink-mute);transition:transform .25s, color .25s;
+    font-size:14px;font-family:'JetBrains Mono',monospace;
   }
-  .ccard:hover .arrow{color:var(--ink);transform:translate(4px,-4px)}
-  .ccard.discord .ic{background:#5865F2}
-  .ccard.youtube .ic{background:#FF0000}
-  .ccard.x .ic{background:#000}
-  .ccard.ig .ic{background:linear-gradient(135deg,#833AB4,#E1306C,#F77737)}
-
-  /* FINAL */
-  .final h2{font-size:clamp(72px,11vw,160px);line-height:.94;letter-spacing:-0.04em;font-weight:700}
-  .final .lead{color:rgba(255,255,255,.6);margin-top:24px}
-  .final-ctas{margin-top:56px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-
-  footer{background:#000;color:rgba(255,255,255,.5);padding:48px 28px 56px}
-  .foot-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .foot-left{display:inline-flex;align-items:center;font-weight:600;font-size:14px;letter-spacing:-0.02em;color:#fff}
-  .socials{display:flex;gap:8px}
-  .soc{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;color:rgba(255,255,255,.65);transition:background .2s, color .2s}
-  .soc:hover{background:rgba(255,255,255,.06);color:#fff}
-  .copyright{font-size:12px;color:rgba(255,255,255,.35)}
-
+  .ccard:hover .arrow{color:var(--ink);transform:translate(2px,-2px)}
   @media (max-width:960px){
-    .journal-wrap{grid-template-columns:1fr;gap:40px}
-    .philo-grid{grid-template-columns:1fr;gap:40px}
+    .connect-grid{grid-template-columns:repeat(2,1fr)}
+    .ccard{border-bottom:1px solid var(--rule)}
+    .ccard:nth-child(even){border-right:0}
+    .ccard:nth-last-child(-n+2){border-bottom:0}
+  }
+  @media (max-width:560px){
+    .connect-grid{grid-template-columns:1fr}
+    .ccard{border-right:0;border-bottom:1px solid var(--rule)}
+    .ccard:last-child{border-bottom:0}
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{padding-top:160px;padding-bottom:160px}
+  .final h2{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(80px,13vw,200px);
+    line-height:.9;letter-spacing:-0.06em;font-weight:600;
+  }
+  .final h2 em{font-style:normal;color:var(--mute-on-dark);font-weight:600}
+  .final .lead{margin-top:32px;color:var(--mute-on-dark);max-width:520px}
+  .final-ctas{margin-top:64px;display:flex;gap:32px;flex-wrap:wrap;justify-content:center;align-items:center}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink-dark);color:var(--mute-on-dark);
+    padding:56px 32px 56px;
+    border-top:1px solid var(--rule-on-dark);
+  }
+  .foot-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .foot-left{
+    display:inline-flex;align-items:baseline;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:16px;
+    letter-spacing:-0.03em;color:var(--cream-on-dark);
+  }
+  .foot-left .ws{font-weight:400;color:var(--mute-on-dark)}
+  .socials{display:flex;gap:4px}
+  .soc{
+    width:34px;height:34px;
+    display:grid;place-items:center;
+    color:var(--mute-on-dark);
+    transition:color .2s;
+  }
+  .soc:hover{color:var(--cream-on-dark)}
+  .copyright{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute-on-dark);letter-spacing:0.04em;text-transform:uppercase}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .journal-wrap{grid-template-columns:1fr;gap:48px}
+    .philo-grid{grid-template-columns:1fr;gap:32px}
     .philo-left{position:static}
     .stats-row{grid-template-columns:repeat(2,1fr)}
-    .connect-grid{grid-template-columns:repeat(2,1fr)}
-    section{padding:120px 20px 140px}
+    .stat-block:nth-child(2){border-right:0}
+    .stat-block:nth-child(-n+2){border-bottom:1px solid var(--rule-on-dark)}
+    section{padding:120px 24px 120px}
+    .hero-sec{padding-top:140px}
+  }
+  @media (max-width:560px){
+    .stats-row{grid-template-columns:1fr}
+    .stat-block{border-right:0;border-bottom:1px solid var(--rule-on-dark)}
+    .stat-block:last-child{border-bottom:0}
+    h1.hero{font-size:clamp(48px,12vw,72px)}
+    .hero-cta-row{gap:20px}
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ======================== NAV ======================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="brand" aria-label="TheWillStreet home">TheWillStreet</a>
+    <a href="/" class="brand" aria-label="TheWillStreet home">The<span class="ws">WillStreet</span></a>
     <div class="nav-links">
       <a href="/journal/waitlist/" class="nav-link">The Journal</a>
       <a href="#connect" class="nav-link">Community</a>
-      <a href="https://discord.gg/YJnVudWqbk" class="nav-cta">Discord</a>
+      <a href="https://discord.gg/YJnVudWqbk" class="nav-cta">Join Discord ↗</a>
     </div>
   </div>
 </nav>
 
-<!-- 1. HERO -->
+<!-- ======================== 1. HERO ======================== -->
 <section class="hero-sec" data-theme="light" data-screen-label="01 Hero">
-  <div class="hero-radial"></div>
   <div class="hero-inner container">
-    <h1 class="hero reveal d1">Discipline is<br/>the asset.</h1>
-    <p class="hero-sub reveal d2">A free community of traders learning to build real wealth the slow way. No gurus, no signals, just the actual process.</p>
+    <h1 class="hero serif reveal d1">Discipline is <em>the asset.</em></h1>
+    <p class="hero-sub reveal d2">Join a community of 3,000+ traders.</p>
     <div class="hero-cta-row reveal d3">
-      <a href="https://discord.gg/YJnVudWqbk" class="btn">
-        Join Discord
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <a href="https://discord.gg/YJnVudWqbk" class="hero-btn">Join the Discord <span class="arr">↗</span></a>
     </div>
+  </div>
 
-    <!-- TICKER -->
-    <div class="ticker-wrap reveal d4">
-      <div class="ticker">
-        <div class="tick"><span class="sym">ES</span><span class="px">5,842.25</span><span class="chg" style="color:var(--green)">+0.82%</span></div>
-        <div class="tick"><span class="sym">NQ</span><span class="px">20,418.75</span><span class="chg" style="color:var(--green)">+1.14%</span></div>
-        <div class="tick"><span class="sym">YM</span><span class="px">42,980</span><span class="chg" style="color:var(--red)">-0.21%</span></div>
-        <div class="tick"><span class="sym">RTY</span><span class="px">2,284.60</span><span class="chg" style="color:var(--green)">+0.46%</span></div>
-        <div class="tick"><span class="sym">AAPL</span><span class="px">238.41</span><span class="chg" style="color:var(--green)">+0.33%</span></div>
-        <div class="tick"><span class="sym">MSFT</span><span class="px">478.02</span><span class="chg" style="color:var(--red)">-0.09%</span></div>
-        <div class="tick"><span class="sym">TSLA</span><span class="px">312.88</span><span class="chg" style="color:var(--green)">+2.14%</span></div>
-        <div class="tick"><span class="sym">NVDA</span><span class="px">146.27</span><span class="chg" style="color:var(--green)">+1.02%</span></div>
-        <div class="tick"><span class="sym">CL</span><span class="px">72.44</span><span class="chg" style="color:var(--red)">-0.68%</span></div>
-        <div class="tick"><span class="sym">GC</span><span class="px">2,684.10</span><span class="chg" style="color:var(--green)">+0.18%</span></div>
-        <!-- loop -->
-        <div class="tick"><span class="sym">ES</span><span class="px">5,842.25</span><span class="chg" style="color:var(--green)">+0.82%</span></div>
-        <div class="tick"><span class="sym">NQ</span><span class="px">20,418.75</span><span class="chg" style="color:var(--green)">+1.14%</span></div>
-        <div class="tick"><span class="sym">YM</span><span class="px">42,980</span><span class="chg" style="color:var(--red)">-0.21%</span></div>
-        <div class="tick"><span class="sym">RTY</span><span class="px">2,284.60</span><span class="chg" style="color:var(--green)">+0.46%</span></div>
-        <div class="tick"><span class="sym">AAPL</span><span class="px">238.41</span><span class="chg" style="color:var(--green)">+0.33%</span></div>
-        <div class="tick"><span class="sym">MSFT</span><span class="px">478.02</span><span class="chg" style="color:var(--red)">-0.09%</span></div>
-        <div class="tick"><span class="sym">TSLA</span><span class="px">312.88</span><span class="chg" style="color:var(--green)">+2.14%</span></div>
-        <div class="tick"><span class="sym">NVDA</span><span class="px">146.27</span><span class="chg" style="color:var(--green)">+1.02%</span></div>
-        <div class="tick"><span class="sym">CL</span><span class="px">72.44</span><span class="chg" style="color:var(--red)">-0.68%</span></div>
-        <div class="tick"><span class="sym">GC</span><span class="px">2,684.10</span><span class="chg" style="color:var(--green)">+0.18%</span></div>
-      </div>
-    </div>
+  <!-- Live ticker -->
+  <div class="ticker-wrap reveal d4" data-theme-skip>
+    <div class="ticker" id="ticker"><!-- populated by JS, with static fallback inline below --></div>
   </div>
 </section>
 
-<!-- 2. JOURNAL -->
-<section class="journal-sec" data-theme="light" data-screen-label="02 Journal">
+<!-- ======================== 2. JOURNAL ======================== -->
+<section class="journal-sec" data-theme="light" data-screen-label="02 Journal" id="journalSec">
   <div class="journal-wrap">
     <div class="journal-copy reveal">
-      <span class="eyebrow">The Journal</span>
-      <h2 class="section-title">Your trades,<br/>held to account.</h2>
+      <h2 class="section-title">Your trades,<br/><em>held to account.</em></h2>
       <p class="lead">Every trade tagged, every mistake logged, every edge measured. You start guessing less and noticing more.</p>
-      <a href="/journal/waitlist/" class="btn">
-        Join the waitlist
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <a href="/journal/waitlist/" class="link-cta">Join the waitlist <span class="arr">↗</span></a>
     </div>
 
-    <div class="journal-mock reveal d2">
+    <div class="journal-mock reveal d2" id="journalMock">
       <div class="jm-head">
         <div class="d"></div><div class="d"></div><div class="d"></div>
-        <div class="t mono">journal.willstreet.app / overview</div>
+        <div class="t">journal.willstreet.app / overview</div>
       </div>
       <div class="jm-body">
         <div class="jm-label">Equity, month to date</div>
-        <div class="jm-equity mono">$184,620</div>
-        <div class="jm-delta mono">+$20,410 MTD</div>
-        <svg class="jm-chart" viewBox="0 0 600 150" preserveAspectRatio="none">
+        <div class="jm-equity" data-counter data-target="184620" data-prefix="$" data-format="comma">$0</div>
+        <div class="jm-delta"><span class="up">↑ <span data-counter data-target="20410" data-prefix="$" data-format="comma">$0</span></span> &nbsp;·&nbsp; +<span data-counter data-target="12.4" data-decimals="1">0</span>% MTD</div>
+        <svg class="jm-chart" viewBox="0 0 600 140" preserveAspectRatio="none">
+          <g stroke="rgba(10,10,11,.06)" stroke-width="1">
+            <line x1="0" x2="600" y1="35" y2="35"/>
+            <line x1="0" x2="600" y1="70" y2="70"/>
+            <line x1="0" x2="600" y1="105" y2="105"/>
+          </g>
+          <!-- soft area fill that follows the path -->
+          <path id="jmArea" d="M0,118 L30,115 60,110 90,116 120,106 150,100 180,106 210,92 240,94 270,82 300,86 330,72 360,74 390,60 420,64 450,50 480,38 510,44 540,30 570,20 600,12 L600,140 L0,140 Z" fill="url(#jmGrad)" opacity="0"/>
           <defs>
-            <linearGradient id="jfill" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#30d158" stop-opacity=".2"/>
-              <stop offset="100%" stop-color="#30d158" stop-opacity="0"/>
+            <linearGradient id="jmGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0A0A0B" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#0A0A0B" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <g stroke="rgba(0,0,0,.05)" stroke-width="1">
-            <line x1="0" x2="600" y1="40" y2="40"/>
-            <line x1="0" x2="600" y1="75" y2="75"/>
-            <line x1="0" x2="600" y1="110" y2="110"/>
+          <path id="jmPath" d="M0,118 L30,115 60,110 90,116 120,106 150,100 180,106 210,92 240,94 270,82 300,86 330,72 360,74 390,60 420,64 450,50 480,38 510,44 540,30 570,20 600,12" fill="none" stroke="#0A0A0B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- live dot at end of path -->
+          <g id="jmDot" opacity="0">
+            <circle cx="600" cy="12" r="7" fill="#0A0A0B" opacity="0.15"/>
+            <circle cx="600" cy="12" r="3.5" fill="#0A0A0B"/>
           </g>
-          <path d="M0,125 L30,122 60,118 90,124 120,114 150,108 180,114 210,100 240,102 270,90 300,94 330,80 360,82 390,68 420,72 450,58 480,46 510,52 540,38 570,28 600,18 L600,150 L0,150 Z" fill="url(#jfill)"/>
-          <path d="M0,125 L30,122 60,118 90,124 120,114 150,108 180,114 210,100 240,102 270,90 300,94 330,80 360,82 390,68 420,72 450,58 480,46 510,52 540,38 570,28 600,18" fill="none" stroke="#30d158" stroke-width="1.75"/>
         </svg>
         <div class="jm-stats">
-          <div class="jm-stat"><div class="k">Win rate</div><div class="v mono">67%</div></div>
-          <div class="jm-stat"><div class="k">Avg R</div><div class="v mono">1.84</div></div>
-          <div class="jm-stat"><div class="k">Profit factor</div><div class="v mono">2.41</div></div>
+          <div class="jm-stat"><div class="k">Win rate</div><div class="v"><span data-counter data-target="67">0</span>%</div></div>
+          <div class="jm-stat"><div class="k">Avg R</div><div class="v"><span data-counter data-target="1.84" data-decimals="2">0.00</span></div></div>
+          <div class="jm-stat"><div class="k">Profit factor</div><div class="v"><span data-counter data-target="2.41" data-decimals="2">0.00</span></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3. PHILOSOPHY -->
-<section class="philo-sec dark" data-theme="dark" data-screen-label="03 Philosophy">
-  <div class="big-quote" aria-hidden="true">"</div>
-  <div class="philo-grid">
-    <div class="philo-left reveal">
-      <div class="num">01 / Approach</div>
-      <h3>Freedom, not <em>fireworks.</em></h3>
-    </div>
-    <div class="philo-body reveal d1">
-      <p>Lambos are cool. They're also bait.</p>
-      <p>Real freedom is quieter: a rule you don't break, a position you sized right, a profit you didn't give back. <strong>Stack enough of those</strong> and one day trading pays your rent.</p>
-      <p class="fade">That's the whole pitch.</p>
+<!-- ======================== 3. PHILOSOPHY (removed) ======================== -->
+
+<!-- ======================== 4. INSIDE THE COMMUNITY (PINNED) ======================== -->
+<section class="itc-sec dark" data-theme="dark" data-screen-label="04 Inside" id="itcSec">
+  <div class="itc-pin" id="itcPin">
+    <div class="itc-stage">
+      <div class="itc-head">
+        <span></span>
+        <div class="itc-counter"><span id="itcCount">01</span><span class="itc-counter-sep">/</span><span>03</span></div>
+      </div>
+
+      <div class="itc-grid">
+        <h2 class="itc-display">Inside <em>the</em><br/>community.</h2>
+
+        <div class="itc-list" id="itcItems">
+          <div class="itc-item" data-idx="0">
+            <div class="itc-item-num">№ 01</div>
+            <div class="itc-item-text">
+              <div class="itc-item-title">Live trade callouts.</div>
+              <div class="itc-item-body">Watch me size, enter, and exit. In real time, in the open.</div>
+            </div>
+          </div>
+          <div class="itc-item" data-idx="1">
+            <div class="itc-item-num">№ 02</div>
+            <div class="itc-item-text">
+              <div class="itc-item-title">Weekly setup breakdowns.</div>
+              <div class="itc-item-body">The why behind every trade, after the fact. No hindsight bias.</div>
+            </div>
+          </div>
+          <div class="itc-item" data-idx="2">
+            <div class="itc-item-num">№ 03</div>
+            <div class="itc-item-text">
+              <div class="itc-item-title">Direct DMs welcome.</div>
+              <div class="itc-item-body">Ask, and I answer. There is nothing to upsell.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itc-progress"><div class="itc-progress-bar" id="itcBar"></div></div>
     </div>
   </div>
 </section>
 
-<!-- 4. STATS -->
-<section class="dark" data-theme="dark" data-screen-label="04 Stats">
-  <div class="container center">
-    <span class="eyebrow reveal">The ecosystem</span>
-    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">Built in public,<br/>one trader at a time.</h2>
-  </div>
-
-  <div class="stats-row reveal d2">
-    <div class="stat-block">
-      <div class="k">Traders in the community</div>
-      <div class="v mono g">3,000+</div>
-      <div class="sub">on Discord</div>
-    </div>
-    <div class="stat-block">
-      <div class="k">Cost to join</div>
-      <div class="v mono">$0</div>
-      <div class="sub">and staying that way</div>
-    </div>
-    <div class="stat-block">
-      <div class="k">Paid ads, ever</div>
-      <div class="v mono">0</div>
-      <div class="sub">word of mouth only</div>
-    </div>
-    <div class="stat-block">
-      <div class="k">Signals sold</div>
-      <div class="v mono">0</div>
-      <div class="sub">no signal service</div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. CONNECT -->
+<!-- ======================== 5. CONNECT ======================== -->
 <section id="connect" data-theme="light" data-screen-label="05 Connect">
   <div class="container center">
-    <span class="eyebrow reveal">Channels</span>
-    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">Where to find me.</h2>
-    <p class="lead reveal d2" style="margin-top:28px">Discord first. The rest are extensions of what happens there.</p>
+    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">Where to <em>find me.</em></h2>
+    <p class="lead reveal d2" style="margin-top:32px">Discord first. The rest are extensions of what happens there.</p>
   </div>
 
-  <div class="connect-grid">
-    <a class="ccard discord reveal" href="https://discord.gg/YJnVudWqbk" target="_blank" rel="noopener">
+  <div class="connect-grid reveal d3">
+    <a class="ccard" href="https://discord.gg/YJnVudWqbk" target="_blank" rel="noopener">
       <div class="ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418Z"/></svg>
       </div>
       <span class="arrow">↗</span>
       <div class="mid">
@@ -503,9 +698,9 @@
       </div>
     </a>
 
-    <a class="ccard youtube reveal d1" href="https://www.youtube.com/@OfficialWillStreet" target="_blank" rel="noopener">
+    <a class="ccard" href="https://www.youtube.com/@OfficialWillStreet" target="_blank" rel="noopener">
       <div class="ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .501 6.186C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.6 15.6V8.4l6.4 3.6-6.4 3.6Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .501 6.186C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.6 15.6V8.4l6.4 3.6-6.4 3.6Z"/></svg>
       </div>
       <span class="arrow">↗</span>
       <div class="mid">
@@ -514,9 +709,9 @@
       </div>
     </a>
 
-    <a class="ccard x reveal d2" href="https://x.com/TheWillStreet_" target="_blank" rel="noopener">
+    <a class="ccard" href="https://x.com/TheWillStreet_" target="_blank" rel="noopener">
       <div class="ic">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2H21.5l-7.5 8.571L22.5 22h-6.93l-5.427-6.79L3.9 22H.63l8.07-9.2L.5 2h7.1l4.9 6.15L18.244 2Zm-1.218 18h1.8L7.06 4H5.145L17.026 20Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.571L22.5 22h-6.93l-5.427-6.79L3.9 22H.63l8.07-9.2L.5 2h7.1l4.9 6.15L18.244 2Zm-1.218 18h1.8L7.06 4H5.145L17.026 20Z"/></svg>
       </div>
       <span class="arrow">↗</span>
       <div class="mid">
@@ -525,9 +720,9 @@
       </div>
     </a>
 
-    <a class="ccard ig reveal d3" href="https://www.instagram.com/thewillstreet_/" target="_blank" rel="noopener">
+    <a class="ccard" href="https://www.instagram.com/thewillstreet_/" target="_blank" rel="noopener">
       <div class="ic">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg>
       </div>
       <span class="arrow">↗</span>
       <div class="mid">
@@ -538,57 +733,307 @@
   </div>
 </section>
 
-<!-- 6. FINAL CTA -->
+<!-- ======================== 6. FINAL CTA (DARK) ======================== -->
 <section class="dark final" data-theme="dark" data-screen-label="06 Final">
   <div class="container center" style="display:flex;flex-direction:column;align-items:center">
-    <span class="eyebrow reveal">Welcome</span>
-    <h2 class="reveal d1">The door's<br/>open.</h2>
-    <p class="lead reveal d2 center" style="max-width:560px">Start on Discord. It's free, and it's where everything happens first.</p>
+    <h2 class="reveal d1">The door's<br/><em>open.</em></h2>
+    <p class="lead reveal d2 center">Start on Discord. It's free, and it's where everything happens first.</p>
     <div class="final-ctas reveal d3">
-      <a href="https://discord.gg/YJnVudWqbk" class="btn">
-        Join Discord
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <a href="https://discord.gg/YJnVudWqbk" class="link-cta">Join the Discord <span class="arr">↗</span></a>
+      <a href="/journal/waitlist/" class="link-cta soft">Read the Journal</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ======================== FOOTER ======================== -->
 <footer data-screen-label="07 Footer">
   <div class="foot-inner">
-    <a href="/" class="foot-left" aria-label="TheWillStreet home">TheWillStreet</a>
+    <a href="/" class="foot-left" aria-label="TheWillStreet home">The<span class="ws">WillStreet</span></a>
     <div class="socials" aria-label="social">
-      <a class="soc" href="https://discord.gg/YJnVudWqbk" aria-label="Discord" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418Z"/></svg></a>
-      <a class="soc" href="https://www.youtube.com/@OfficialWillStreet" aria-label="YouTube" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .501 6.186C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.6 15.6V8.4l6.4 3.6-6.4 3.6Z"/></svg></a>
+      <a class="soc" href="https://discord.gg/YJnVudWqbk" aria-label="Discord" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418Z"/></svg></a>
+      <a class="soc" href="https://www.youtube.com/@OfficialWillStreet" aria-label="YouTube" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .501 6.186C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.6 15.6V8.4l6.4 3.6-6.4 3.6Z"/></svg></a>
       <a class="soc" href="https://x.com/TheWillStreet_" aria-label="X" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.571L22.5 22h-6.93l-5.427-6.79L3.9 22H.63l8.07-9.2L.5 2h7.1l4.9 6.15L18.244 2Zm-1.218 18h1.8L7.06 4H5.145L17.026 20Z"/></svg></a>
-      <a class="soc" href="https://www.instagram.com/thewillstreet_/" aria-label="Instagram" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
+      <a class="soc" href="https://www.instagram.com/thewillstreet_/" aria-label="Instagram" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
     </div>
-    <div class="copyright mono">© 2026 TheWillStreet</div>
+    <div class="copyright">© 2026 TheWillStreet</div>
   </div>
 </footer>
 
 <script>
-  const nav = document.getElementById('nav');
-  const sections = document.querySelectorAll('section[data-theme]');
-  function onScroll(){
-    const y = window.scrollY;
-    nav.classList.toggle('scrolled', y > 10);
-    let current = 'light';
-    for (const s of sections){
-      const r = s.getBoundingClientRect();
-      if (r.top <= 56 && r.bottom > 56){ current = s.dataset.theme; break; }
-    }
-    nav.classList.toggle('on-dark', current === 'dark');
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  // ============================================================
+  // META BAR: date + market session
+  // ============================================================
+  (function metaBar(){
+    const dateEl = document.getElementById('metaDate');
+    const marketEl = document.getElementById('metaMarket');
+    if (!dateEl || !marketEl) return;
 
-  const io = new IntersectionObserver((entries)=>{
-    for (const e of entries){
-      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    function update(){
+      const now = new Date();
+      // Render date in NY time
+      const nyParts = new Intl.DateTimeFormat('en-US',{
+        timeZone:'America/New_York',
+        weekday:'short', month:'short', day:'numeric'
+      }).formatToParts(now).reduce((a,p)=>{a[p.type]=p.value;return a},{});
+      dateEl.textContent = `${nyParts.weekday} · ${nyParts.month} ${nyParts.day}`;
+
+      // Market session: NYSE 09:30 to 16:00 ET, Mon-Fri
+      const ny = new Date(now.toLocaleString('en-US',{timeZone:'America/New_York'}));
+      const day = ny.getDay(); // 0 Sun … 6 Sat
+      const mins = ny.getHours()*60 + ny.getMinutes();
+      const open = 9*60+30, close = 16*60;
+      const isWeekday = day>=1 && day<=5;
+      let label;
+      if (isWeekday && mins>=open && mins<close) label = 'Markets · Open';
+      else if (isWeekday && mins<open) label = 'Markets · Pre-open';
+      else if (isWeekday && mins>=close) label = 'Markets · Closed';
+      else label = 'Markets · Weekend';
+      marketEl.textContent = label;
     }
-  },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    update();
+    setInterval(update, 30000);
+  })();
+
+  // ============================================================
+  // TICKER: live via Stooq CSV (CORS-open), fallback to static
+  // ============================================================
+  (function ticker(){
+    const el = document.getElementById('ticker');
+    if (!el) return;
+
+    // Symbol map: display label → Stooq symbol
+    const SYMBOLS = [
+      {label:'ES',  stooq:'es.f',   note:'S&P fut'},
+      {label:'NQ',  stooq:'nq.f',   note:'Nasdaq fut'},
+      {label:'YM',  stooq:'ym.f',   note:'Dow fut'},
+      {label:'AAPL',stooq:'aapl.us'},
+      {label:'MSFT',stooq:'msft.us'},
+      {label:'TSLA',stooq:'tsla.us'},
+      {label:'NVDA',stooq:'nvda.us'},
+      {label:'BTC', stooq:'btcusd', note:'Bitcoin'},
+      {label:'CL',  stooq:'cl.f',   note:'Crude'},
+      {label:'GC',  stooq:'gc.f',   note:'Gold'},
+    ];
+
+    // Static fallback (used immediately, replaced by live data when fetch resolves)
+    const FALLBACK = {
+      ES:{px:'5,842.25',chg:0.82},
+      NQ:{px:'20,418.75',chg:1.14},
+      YM:{px:'42,980',chg:-0.21},
+      AAPL:{px:'238.41',chg:0.33},
+      MSFT:{px:'478.02',chg:-0.09},
+      TSLA:{px:'312.88',chg:2.14},
+      NVDA:{px:'146.27',chg:1.02},
+      BTC:{px:'67,420',chg:0.58},
+      CL:{px:'72.44',chg:-0.68},
+      GC:{px:'2,684.10',chg:0.18},
+    };
+
+    function fmtPx(n){
+      const v = Number(n);
+      if (!isFinite(v)) return '--';
+      if (v >= 1000) return v.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2});
+      return v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    }
+    function fmtChg(n){
+      const v = Number(n);
+      if (!isFinite(v)) return '';
+      const s = v>=0 ? '+' : '';
+      return `${s}${v.toFixed(2)}%`;
+    }
+
+    function render(data){
+      const make = (item)=>{
+        const t = data[item.label] || FALLBACK[item.label] || {px:'--',chg:0};
+        const cls = t.chg >= 0 ? 'up' : 'down';
+        const arrow = t.chg >= 0 ? '▲' : '▼';
+        return `<div class="tick">
+          <span class="sym">${item.label}</span>
+          <span class="px">${t.px}</span>
+          <span class="chg ${cls}">${arrow} ${fmtChg(t.chg).replace('+','').replace('-','')}</span>
+        </div>`;
+      };
+      // Build twice for seamless loop
+      const html = SYMBOLS.map(make).join('') + SYMBOLS.map(make).join('');
+      el.innerHTML = html;
+    }
+
+    // Render fallback immediately so ticker is never empty
+    render({});
+
+    // Try fetching live data from Stooq
+    // Stooq CSV: https://stooq.com/q/l/?s=SYM&f=sd2t2ohlcv&h&e=csv
+    async function fetchOne(item){
+      try{
+        const url = `https://stooq.com/q/l/?s=${encodeURIComponent(item.stooq)}&f=sd2t2ohlcvn&h&e=csv`;
+        const res = await fetch(url, {cache:'no-store'});
+        if (!res.ok) throw new Error('http '+res.status);
+        const txt = await res.text();
+        // CSV: Symbol,Date,Time,Open,High,Low,Close,Volume,Name
+        const lines = txt.trim().split(/\r?\n/);
+        if (lines.length < 2) throw new Error('empty');
+        const cols = lines[1].split(',');
+        const close = parseFloat(cols[6]);
+        const open  = parseFloat(cols[3]);
+        if (!isFinite(close) || !isFinite(open) || open===0) throw new Error('parse');
+        const chg = ((close - open) / open) * 100;
+        return {label:item.label, px:fmtPx(close), chg};
+      }catch(e){ return null; }
+    }
+
+    async function loadLive(){
+      const results = await Promise.all(SYMBOLS.map(fetchOne));
+      const data = {};
+      results.forEach(r => { if (r) data[r.label] = {px:r.px, chg:r.chg}; });
+      // Merge with fallback so missing ones still show
+      const merged = Object.assign({}, FALLBACK, data);
+      // Re-format fallback px values that weren't refreshed
+      Object.keys(merged).forEach(k=>{
+        const v = merged[k];
+        if (typeof v.px === 'number') v.px = fmtPx(v.px);
+      });
+      render(merged);
+    }
+
+    loadLive();
+    // Refresh every 5 min
+    setInterval(loadLive, 5*60*1000);
+  })();
+
+  // ============================================================
+  // NAV: scroll state + light/dark theme switching
+  // ============================================================
+  (function nav(){
+    const nav = document.getElementById('nav');
+    const sections = document.querySelectorAll('section[data-theme]');
+    function onScroll(){
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 10);
+
+      // Determine which section the nav (at y=60) is over
+      let current = 'light';
+      const probeY = 60;
+      for (const s of sections){
+        const r = s.getBoundingClientRect();
+        if (r.top <= probeY && r.bottom > probeY){ current = s.dataset.theme; break; }
+      }
+      nav.classList.toggle('on-dark', current === 'dark');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
+  // ============================================================
+  // REVEAL on scroll
+  // ============================================================
+  (function reveal(){
+    const io = new IntersectionObserver((entries)=>{
+      for (const e of entries){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  })();
+
+  // ============================================================
+  // INSIDE THE COMMUNITY: pinned scroll progression
+  // ============================================================
+  (function itc(){
+    const sec = document.getElementById('itcSec');
+    if (!sec) return;
+    const items = [...document.querySelectorAll('#itcItems .itc-item')];
+    const bar = document.getElementById('itcBar');
+    const counter = document.getElementById('itcCount');
+    const N = items.length;
+    let lastIdx = -1;
+
+    function onScroll(){
+      const r = sec.getBoundingClientRect();
+      const total = sec.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-r.top, 0), total);
+      const p = total > 0 ? scrolled / total : 0; // 0..1
+      const idx = Math.min(N - 1, Math.floor(p * N));
+      if (idx !== lastIdx){
+        lastIdx = idx;
+        items.forEach((el, i)=>{
+          el.classList.toggle('active', i === idx);
+          el.classList.toggle('dim', i !== idx);
+        });
+        if (counter) counter.textContent = String(idx+1).padStart(2,'0');
+      }
+      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+    }
+    items.forEach((el,i)=>{
+      el.classList.toggle('active', i===0);
+      el.classList.toggle('dim', i!==0);
+    });
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
+  // ============================================================
+  // JOURNAL: scroll-driven chart draw + counters
+  // ============================================================
+  (function journalAnim(){
+    const sec = document.getElementById('journalSec');
+    const mock = document.getElementById('journalMock');
+    const path = document.getElementById('jmPath');
+    const dot = document.getElementById('jmDot');
+    const area = document.getElementById('jmArea');
+    if (!sec || !mock || !path) return;
+
+    const len = path.getTotalLength();
+    path.style.setProperty('--len', len);
+    path.classList.add('draw-ready');
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+
+    // gather counters and pre-parse targets
+    const counters = [...mock.querySelectorAll('[data-counter]')].map(el=>({
+      el,
+      target: parseFloat(el.dataset.target),
+      decimals: parseInt(el.dataset.decimals || '0', 10),
+      prefix: el.dataset.prefix || '',
+      useComma: el.dataset.format === 'comma',
+    }));
+
+    function setProgress(p){
+      // p in [0..1]
+      p = Math.min(1, Math.max(0, p));
+      const eased = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2; // easeInOutQuad
+      path.style.strokeDashoffset = (len * (1 - eased)).toFixed(2);
+      if (area) area.style.opacity = eased.toFixed(3);
+      if (dot){
+        dot.style.opacity = (eased > 0.85 ? (eased - 0.85) / 0.15 : 0).toFixed(3);
+        dot.classList.toggle('show', eased > 0.95);
+      }
+      counters.forEach(c=>{
+        const v = c.target * eased;
+        let str;
+        if (c.useComma) str = Math.round(v).toLocaleString('en-US');
+        else str = v.toFixed(c.decimals);
+        c.el.textContent = c.prefix + str;
+      });
+    }
+
+    function onScroll(){
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Animation runs from when section top hits 80% of viewport down to when section bottom hits 20% of viewport
+      const startY = vh * 0.8;
+      const endY = vh * 0.2;
+      // distance scrolled inside this window
+      const totalRange = (sec.offsetHeight + (startY - endY));
+      const scrolledIn = startY - r.top;
+      const p = scrolledIn / totalRange;
+      setProgress(p);
+    }
+
+    // initialize
+    setProgress(0);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
 </script>
 </body>
 </html>
