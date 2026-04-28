@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The WillStreet Journal. Every trade, understood.</title>
-<meta name="description" content="A trading journal built for the way serious traders actually think. Disciplined, deliberate, honest. Waitlist open. Private beta Q3 2026.">
+<meta name="description" content="A trading journal built for the way serious traders actually think. Disciplined, deliberate, honest. Waitlist open. Private beta Q2 2026.">
 <meta property="og:title" content="The WillStreet Journal. Every trade, understood.">
-<meta property="og:description" content="A trading journal built for the way serious traders actually think. Waitlist open. Private beta Q3 2026.">
+<meta property="og:description" content="A trading journal built for the way serious traders actually think. Waitlist open. Private beta Q2 2026.">
 <meta property="og:url" content="https://www.thewillstreet.com/journal/waitlist/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -149,9 +149,14 @@
 
   /* DASHBOARD MOCKUP */
   .dash{
-    width:100%;background:var(--cream);border:1px solid var(--rule);
+    width:100%;background:var(--cream);
+    border:1px solid rgba(26,26,26,0.08);
+    border-radius:24px;
     overflow:hidden;color:var(--ink);
-    box-shadow:0 1px 0 var(--rule),0 30px 60px -28px rgba(0,0,0,0.14);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      0 8px 24px -12px rgba(0,0,0,0.10),
+      0 32px 60px -28px rgba(0,0,0,0.18);
   }
   .dash.dark-mock{background:var(--ink-dark);border-color:var(--rule-on-dark);color:var(--cream-on-dark);box-shadow:none}
   .dash-chrome{
@@ -202,7 +207,7 @@
   .pos{color:var(--up)}
   .neg{color:var(--down)}
 
-  .chart-wrap{border:1px solid var(--rule);padding:24px 26px 16px}
+  .chart-wrap{position:relative;border:1px solid var(--rule);padding:24px 26px 16px}
   .dark-mock .chart-wrap{border-color:var(--rule-on-dark)}
   .chart-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
   .chart-head .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);font-weight:500;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
@@ -210,6 +215,43 @@
   .chart-head .big{font-family:'Inter',sans-serif;font-size:36px;font-weight:600;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums}
   .chart-head .delta{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500}
   .chart-svg{width:100%;height:180px;display:block}
+  .chart-svg-wrap{position:relative}
+  #dashPath{stroke-dasharray:1;stroke-dashoffset:1}
+  #dashPath.draw-ready{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+  .dash-live-dot{
+    position:absolute;
+    right:0;
+    top:20px;
+    width:0;height:0;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity 0.3s ease;
+  }
+  .dash-live-dot::before{
+    content:"";
+    position:absolute;
+    left:-3.5px;top:-3.5px;
+    width:7px;height:7px;
+    border-radius:50%;
+    background:#1A1A1A;
+  }
+  .dash-live-dot::after{
+    content:"";
+    position:absolute;
+    left:-7px;top:-7px;
+    width:14px;height:14px;
+    border-radius:50%;
+    background:#1A1A1A;
+    opacity:0;
+  }
+  .dash-live-dot.show::after{
+    animation:dashPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes dashPulse{
+    0%{transform:scale(1);opacity:.15}
+    50%{transform:scale(1.6);opacity:0}
+    100%{transform:scale(1);opacity:0}
+  }
 
   .trades{border:1px solid var(--rule);overflow:hidden}
   .dark-mock .trades{border-color:var(--rule-on-dark)}
@@ -239,8 +281,14 @@
   .feat-split .copy .lead{max-width:460px;margin-bottom:36px}
 
   .setup-mock{
-    background:var(--cream);border:1px solid var(--rule);overflow:hidden;
-    box-shadow:0 1px 0 var(--rule),0 24px 50px -28px rgba(0,0,0,0.12);
+    background:var(--cream);
+    border:1px solid rgba(26,26,26,0.08);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      0 8px 24px -12px rgba(0,0,0,0.10),
+      0 32px 60px -28px rgba(0,0,0,0.18);
   }
   .setup-head{padding:24px 26px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:baseline;justify-content:space-between}
   .setup-head .t{font-family:'Inter',sans-serif;font-size:17px;font-weight:600;letter-spacing:-0.025em}
@@ -251,12 +299,18 @@
   .setup-row > .k{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);font-weight:500;margin-bottom:12px;letter-spacing:0.08em;text-transform:uppercase}
   .tagset{display:flex;flex-wrap:wrap;gap:8px}
   .tag{
-    font-size:13px;font-weight:400;padding:7px 14px;
-    border:1px solid var(--rule);color:var(--ink-soft);background:transparent;
+    font-size:13px;font-weight:500;padding:8px 16px;
+    border-radius:999px;
+    border:1px solid rgba(26,26,26,0.10);color:var(--ink-soft);background:transparent;
+    cursor:pointer;user-select:none;
+    transition:all 0.18s ease;
   }
+  .tag:hover{border-color:rgba(26,26,26,0.35);color:var(--ink);transform:translateY(-1px)}
+  .tag:active{transform:translateY(0)}
   .tag.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .tag.on:hover{background:#000;border-color:#000;color:var(--cream)}
 
-  .note-box{border:1px solid var(--rule);padding:18px 20px;background:var(--cream-2)}
+  .note-box{border:1px solid rgba(26,26,26,0.06);border-radius:14px;padding:18px 20px;background:var(--cream-2)}
   .note-box .note-text{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);line-height:1.55;letter-spacing:-0.01em}
   .note-box .note-meta{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);display:flex;gap:10px;align-items:center;letter-spacing:0.08em;text-transform:uppercase}
 
@@ -280,44 +334,57 @@
   .heat{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-top:24px}
   .cell{aspect-ratio:1;background:rgba(232,226,213,0.04)}
 
-  /* FEATURE: MENTOR */
-  .mentor-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;max-width:1300px;align-items:stretch}
-  .trade-card{
-    background:var(--cream);border:1px solid var(--rule);
-    padding:32px 32px 28px;
-    box-shadow:0 1px 0 var(--rule),0 24px 50px -28px rgba(0,0,0,0.12);
+  /* FEATURE: CALENDAR HEATMAP */
+  .cal-wrap{width:100%;max-width:1100px;margin:0 auto}
+  .cal-card{
+    background:var(--cream);
+    border:1px solid rgba(26,26,26,0.08);
+    border-radius:24px;
+    padding:32px 36px 28px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      0 8px 24px -12px rgba(0,0,0,0.10),
+      0 32px 60px -28px rgba(0,0,0,0.18);
   }
-  .trade-card .th{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
-  .trade-card .th h4{font-family:'Inter',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.035em}
-  .trade-card .th .meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);margin-top:6px;letter-spacing:0.04em}
-  .trade-card .pl{text-align:right}
-  .trade-card .pl .amt{font-family:'Inter',sans-serif;font-size:26px;font-weight:600;letter-spacing:-0.04em;color:var(--ink);font-variant-numeric:tabular-nums}
-  .trade-card .pl .r{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);margin-top:4px;letter-spacing:0.04em}
+  .cal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:28px}
+  .cal-title{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;letter-spacing:-0.025em}
+  .cal-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);margin-top:6px;letter-spacing:0.04em}
+  .cal-stats-inline{display:flex;gap:36px}
+  .cal-stats-inline .k{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);font-weight:500;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+  .cal-stats-inline .v{font-family:'Inter',sans-serif;font-size:22px;font-weight:600;letter-spacing:-0.035em;font-variant-numeric:tabular-nums;line-height:1}
+  .cal-stats-inline .v.pos{color:var(--up)}
+  .cal-stats-inline .v.neg{color:var(--down)}
 
-  .tc-row{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--rule);font-size:13px}
-  .tc-row .k{color:var(--ink-mute);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase}
-  .tc-row .v{font-weight:500}
+  .cal-grid-wrap{display:flex;gap:10px;justify-content:center;padding:8px 0 4px}
+  .cal-days{display:grid;grid-template-rows:repeat(5,32px);gap:4px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase;align-items:center;line-height:1}
+  .cal-grid{
+    display:grid;
+    grid-template-rows:repeat(5,32px);
+    grid-auto-flow:column;
+    grid-auto-columns:32px;
+    gap:4px;
+  }
+  .cal-grid .cell{
+    width:32px;height:32px;
+    border-radius:6px;
+    background:rgba(26,26,26,0.04);
+    cursor:default;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cal-grid .cell:hover{transform:scale(1.18);box-shadow:0 4px 14px -4px rgba(0,0,0,0.18);position:relative;z-index:2}
+  .cal-grid .cell[data-l="-2"]{background:rgba(220,53,69,0.55)}
+  .cal-grid .cell[data-l="-1"]{background:rgba(220,53,69,0.26)}
+  .cal-grid .cell[data-l="0"]{background:rgba(26,26,26,0.06)}
+  .cal-grid .cell[data-l="1"]{background:rgba(48,180,118,0.30)}
+  .cal-grid .cell[data-l="2"]{background:rgba(48,180,118,0.62)}
 
-  .thread{
-    background:var(--cream);border:1px solid var(--rule);
-    padding:28px;display:flex;flex-direction:column;gap:18px;
-    box-shadow:0 1px 0 var(--rule),0 24px 50px -28px rgba(0,0,0,0.12);
-  }
-  .thread-h{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--rule)}
-  .msg{display:flex;gap:14px}
-  .avatar{
-    width:34px;height:34px;flex-shrink:0;
-    background:var(--ink);color:var(--cream);
-    display:grid;place-items:center;
-    font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:-0.02em;
-  }
-  .avatar.m{background:var(--cream-2);color:var(--ink);border:1px solid var(--rule)}
-  .msg-body{flex:1}
-  .msg-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
-  .msg-name{font-size:13px;font-weight:600}
-  .msg-role{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase}
-  .msg-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);margin-left:auto;letter-spacing:0.04em}
-  .msg-text{font-size:14px;color:var(--ink);line-height:1.55}
+  .cal-foot{display:flex;justify-content:space-between;align-items:center;margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:0.08em;text-transform:uppercase}
+  .cal-legend{display:inline-flex;align-items:center;gap:6px}
+  .cal-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;background:rgba(26,26,26,0.06)}
+  .cal-legend i[data-l="-2"]{background:rgba(220,53,69,0.55)}
+  .cal-legend i[data-l="-1"]{background:rgba(220,53,69,0.26)}
+  .cal-legend i[data-l="1"]{background:rgba(48,180,118,0.30)}
+  .cal-legend i[data-l="2"]{background:rgba(48,180,118,0.62)}
 
   /* SOCIAL PROOF */
   .proof{
@@ -380,7 +447,12 @@
     .analytics-grid{grid-template-columns:1fr}
     .panel{border-right:0;border-bottom:1px solid var(--rule-on-dark)}
     .panel:last-child{border-bottom:0}
-    .mentor-wrap{grid-template-columns:1fr}
+    .cal-card{padding:24px}
+    .cal-grid{grid-template-rows:repeat(5,22px);grid-auto-columns:22px;gap:3px}
+    .cal-grid .cell{width:22px;height:22px;border-radius:4px}
+    .cal-days{grid-template-rows:repeat(5,22px)}
+    .cal-stats-inline{gap:24px}
+    .cal-stats-inline .v{font-size:18px}
     .tr-row{grid-template-columns:1fr 70px 90px 80px;font-size:12px;padding:12px 16px}
     .tr-row .c-rmul{display:none}
     section{padding:120px 24px 120px}
@@ -399,12 +471,12 @@
 <!-- 1. HERO -->
 <section class="hero-sec" data-theme="light" data-screen-label="01 Hero">
   <div class="hero-inner container">
-    <span class="eyebrow reveal">Private beta · Q3 2026</span>
+    <span class="eyebrow reveal">Private beta · Q2 2026</span>
     <h1 class="hero serif reveal d1">Every trade,<br/><em>understood.</em></h1>
     <p class="hero-sub reveal d2">A trading journal built for the way serious traders actually think. Disciplined, deliberate, and relentlessly honest.</p>
     <div class="hero-cta-row reveal d3">
       <a href="#waitlist" class="link-cta">Join the waitlist <span class="arr">↗</span></a>
-      <span class="hero-note">No credit card. One email when ready.</span>
+      <span class="hero-note">100% free. No credit card. One email when ready.</span>
     </div>
 
     <div class="hero-preview-wrap reveal d4">
@@ -459,7 +531,7 @@
 </section>
 
 <!-- 2. DASHBOARD REVEAL -->
-<section data-theme="light" data-screen-label="02 Dashboard">
+<section id="dashSec" data-theme="light" data-screen-label="02 Dashboard">
   <div class="container center">
     <span class="eyebrow reveal">The Dashboard</span>
     <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">A complete picture of <em>your edge.</em></h2>
@@ -500,22 +572,22 @@
           <div class="stat-row">
             <div class="stat">
               <div class="k">Win rate</div>
-              <div class="v">67%</div>
+              <div class="v"><span data-counter data-target="67">0</span>%</div>
               <div class="delta pos">+4.2 vs 30d</div>
             </div>
             <div class="stat">
               <div class="k">Avg R</div>
-              <div class="v">1.84</div>
+              <div class="v"><span data-counter data-target="1.84" data-decimals="2">0.00</span></div>
               <div class="delta pos">+0.21</div>
             </div>
             <div class="stat">
               <div class="k">Profit factor</div>
-              <div class="v">2.41</div>
+              <div class="v"><span data-counter data-target="2.41" data-decimals="2">0.00</span></div>
               <div class="delta pos">+0.33</div>
             </div>
             <div class="stat">
               <div class="k">Max drawdown</div>
-              <div class="v">−3.8%</div>
+              <div class="v">&minus;<span data-counter data-target="3.8" data-decimals="1">0.0</span>%</div>
               <div class="delta neg">Apr 09</div>
             </div>
           </div>
@@ -524,18 +596,21 @@
             <div class="chart-head">
               <div>
                 <div class="lbl">Equity curve · MTD</div>
-                <div class="big">$184,620.34</div>
+                <div class="big"><span data-counter data-target="184620.34" data-decimals="2" data-prefix="$" data-format="comma">$0.00</span></div>
               </div>
-              <div class="delta pos">+$20,410 · +12.4%</div>
+              <div class="delta pos">+<span data-counter data-target="20410" data-prefix="$" data-format="comma">$0</span> · +<span data-counter data-target="12.4" data-decimals="1">0.0</span>%</div>
             </div>
-            <svg class="chart-svg" viewBox="0 0 800 180" preserveAspectRatio="none">
-              <g stroke="rgba(26,26,26,.06)" stroke-width="1">
-                <line x1="0" x2="800" y1="45" y2="45"/>
-                <line x1="0" x2="800" y1="90" y2="90"/>
-                <line x1="0" x2="800" y1="135" y2="135"/>
-              </g>
-              <path d="M0,150 L30,148 60,144 90,150 120,140 150,136 180,142 210,128 240,130 270,118 300,122 330,108 360,112 390,96 420,100 450,88 480,74 510,82 540,68 570,60 600,66 630,48 660,54 690,38 720,32 750,26 780,24 800,20" fill="none" stroke="#1A1A1A" stroke-width="1.5"/>
-            </svg>
+            <div class="chart-svg-wrap">
+              <svg class="chart-svg" viewBox="0 0 800 180" preserveAspectRatio="none">
+                <g stroke="rgba(26,26,26,.06)" stroke-width="1">
+                  <line x1="0" x2="800" y1="45" y2="45"/>
+                  <line x1="0" x2="800" y1="90" y2="90"/>
+                  <line x1="0" x2="800" y1="135" y2="135"/>
+                </g>
+                <path id="dashPath" d="M0,150 L30,148 60,144 90,150 120,140 150,136 180,142 210,128 240,130 270,118 300,122 330,108 360,112 390,96 420,100 450,88 480,74 510,82 540,68 570,60 600,66 630,48 660,54 690,38 720,32 750,26 780,24 800,20" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="dash-live-dot" aria-hidden="true"></span>
+            </div>
           </div>
 
           <div class="trades">
@@ -592,7 +667,6 @@
 <section data-theme="light" data-screen-label="03 Setups" style="background:var(--cream-2)">
   <div class="feat-split">
     <div class="copy reveal">
-      <span class="eyebrow">Setups</span>
       <h2 class="section-title">Name what works.<br/><em>Repeat it.</em></h2>
       <p class="lead">Tag every trade with the setup, the emotion, and the mistake. Over weeks you stop guessing. Your edge starts naming itself.</p>
     </div>
@@ -715,78 +789,40 @@
   </div>
 </section>
 
-<!-- 5. MENTOR -->
-<section data-theme="light" data-screen-label="05 Mentor">
+<!-- 5. CALENDAR HEATMAP -->
+<section data-theme="light" data-screen-label="05 Calendar">
   <div class="container center" style="margin-bottom:72px">
-    <span class="eyebrow reveal">Mentor mode</span>
-    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">A second pair of eyes,<br/><em>trade by trade.</em></h2>
-    <p class="lead reveal d2" style="margin-top:32px">Share a single trade, not your whole account, with a coach or trusted peer. Get feedback inline, where the chart lives.</p>
+    <h2 class="section-title reveal d1" style="max-width:900px;margin:0 auto">Every day, <em>scored.</em></h2>
+    <p class="lead reveal d2" style="margin-top:32px">A quarter of trading at a glance. Each cell is a day. The streaks tell the truth before any P&amp;L can.</p>
   </div>
 
-  <div class="mentor-wrap">
-    <div class="trade-card reveal">
-      <div class="th">
+  <div class="cal-wrap reveal">
+    <div class="cal-card">
+      <div class="cal-head">
         <div>
-          <h4>NQ · Opening drive</h4>
-          <div class="meta">Apr 22, 2026 · 09:42 – 10:11 ET</div>
+          <div class="cal-title">Daily P&amp;L · last 13 weeks</div>
+          <div class="cal-sub">65 trading days · M to F</div>
         </div>
-        <div class="pl">
-          <div class="amt">+$3,240</div>
-          <div class="r">+2.1R · 3 contracts</div>
+        <div class="cal-stats-inline">
+          <div><div class="k">Best</div><div class="v pos">+6.2R</div></div>
+          <div><div class="k">Worst</div><div class="v neg">−2.1R</div></div>
+          <div><div class="k">Green days</div><div class="v">58%</div></div>
+          <div><div class="k">Avg daily</div><div class="v pos">+0.84R</div></div>
         </div>
       </div>
-      <svg viewBox="0 0 600 160" style="width:100%;height:140px;margin-bottom:18px">
-        <g stroke="rgba(26,26,26,.06)" stroke-width="1">
-          <line x1="0" x2="600" y1="40" y2="40"/>
-          <line x1="0" x2="600" y1="80" y2="80"/>
-          <line x1="0" x2="600" y1="120" y2="120"/>
-        </g>
-        <path d="M0,110 L30,108 60,104 90,96 120,90 150,78 180,82 210,70 240,62 270,58 300,50 330,56 360,44 390,38 420,42 450,30 480,26 510,34 540,22 570,18 600,20" fill="none" stroke="#1A1A1A" stroke-width="1.5"/>
-        <circle cx="90" cy="96" r="4" fill="#1A1A1A"/>
-        <circle cx="480" cy="26" r="4" fill="#1A1A1A"/>
-        <text x="98" y="92" font-family="JetBrains Mono" font-size="9" fill="#1A1A1A">entry · 19,412</text>
-        <text x="370" y="22" font-family="JetBrains Mono" font-size="9" fill="#1A1A1A">exit · 19,503</text>
-      </svg>
-      <div class="tc-row"><span class="k">Setup</span><span class="v">Opening drive continuation</span></div>
-      <div class="tc-row"><span class="k">Risk</span><span class="v mono">1.2% · $1,540</span></div>
-      <div class="tc-row"><span class="k">Hold time</span><span class="v mono">29 min</span></div>
-      <div class="tc-row"><span class="k">Execution grade</span><span class="v">A</span></div>
-    </div>
 
-    <div class="thread reveal d2">
-      <div class="thread-h">Mentor thread · 3 notes</div>
-      <div class="msg">
-        <div class="avatar m">DK</div>
-        <div class="msg-body">
-          <div class="msg-head">
-            <span class="msg-name">Daniel Koh</span>
-            <span class="msg-role">Mentor</span>
-            <span class="msg-time">10:34 AM</span>
-          </div>
-          <div class="msg-text">Good patience on the entry. Two things worth noting. You scaled a third at the first measured move, which is fine, but the remaining runner had room to 19,540. Next time size the scale smaller or leave the core alone until structure breaks.</div>
-        </div>
+      <div class="cal-grid-wrap">
+        <div class="cal-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
+        <div class="cal-grid" id="calGrid"></div>
       </div>
-      <div class="msg">
-        <div class="avatar">You</div>
-        <div class="msg-body">
-          <div class="msg-head">
-            <span class="msg-name">You</span>
-            <span class="msg-role">Trader</span>
-            <span class="msg-time">10:51 AM</span>
-          </div>
-          <div class="msg-text">Fair. I panicked when the 1m rolled, but the 5m never lost VWAP. Going to mark this trade as "exited on noise."</div>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="avatar m">DK</div>
-        <div class="msg-body">
-          <div class="msg-head">
-            <span class="msg-name">Daniel Koh</span>
-            <span class="msg-role">Mentor</span>
-            <span class="msg-time">10:53 AM</span>
-          </div>
-          <div class="msg-text">That's the right tag. This is the 4th one this month. Worth a rule: no exits on 1m unless the 5m confirms.</div>
-        </div>
+
+      <div class="cal-foot">
+        <span class="cal-legend">
+          Less
+          <i data-l="-2"></i><i data-l="-1"></i><i data-l="0"></i><i data-l="1"></i><i data-l="2"></i>
+          More
+        </span>
+        <span>Apr 1 to Jun 30, 2026</span>
       </div>
     </div>
   </div>
@@ -795,7 +831,7 @@
 <!-- 6. SOCIAL PROOF -->
 <section data-theme="light" data-screen-label="06 Proof" style="background:var(--cream-2)">
   <div class="container center">
-    <h2 class="proof reveal">3,000 traders.<br/><em>One community.</em><br/>Coming soon.</h2>
+    <h2 class="proof reveal">3,500+ traders.<br/><em>One community.</em><br/>Coming soon.</h2>
   </div>
 </section>
 
@@ -867,6 +903,94 @@
     }
   },{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.querySelectorAll('.setup-mock .tag').forEach(t=>{
+    t.addEventListener('click', ()=>t.classList.toggle('on'));
+  });
+
+  (function dashAnim(){
+    const sec = document.getElementById('dashSec');
+    const path = document.getElementById('dashPath');
+    const dot = sec ? sec.querySelector('.dash-live-dot') : null;
+    if (!sec || !path) return;
+
+    const len = path.getTotalLength();
+    path.style.setProperty('--len', len);
+    path.classList.add('draw-ready');
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+
+    const counters = [...sec.querySelectorAll('[data-counter]')].map(el=>({
+      el,
+      target: parseFloat(el.dataset.target),
+      decimals: parseInt(el.dataset.decimals || '0', 10),
+      prefix: el.dataset.prefix || '',
+      useComma: el.dataset.format === 'comma',
+    }));
+
+    function setProgress(p){
+      p = Math.min(1, Math.max(0, p));
+      const eased = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2;
+      path.style.strokeDashoffset = (len * (1 - eased)).toFixed(2);
+      if (dot){
+        dot.style.opacity = (eased > 0.85 ? (eased - 0.85) / 0.15 : 0).toFixed(3);
+        dot.classList.toggle('show', eased > 0.95);
+      }
+      counters.forEach(c=>{
+        const v = c.target * eased;
+        let str;
+        if (c.useComma){
+          str = c.decimals > 0
+            ? v.toLocaleString('en-US', {minimumFractionDigits:c.decimals, maximumFractionDigits:c.decimals})
+            : Math.round(v).toLocaleString('en-US');
+        } else {
+          str = v.toFixed(c.decimals);
+        }
+        c.el.textContent = c.prefix + str;
+      });
+    }
+
+    function onScroll(){
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const startY = vh * 0.8;
+      const endY = vh * 0.2;
+      const totalRange = sec.offsetHeight + (startY - endY);
+      const p = (startY - r.top) / totalRange;
+      setProgress(p);
+    }
+
+    setProgress(0);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
+  (function calendarMock(){
+    const grid = document.getElementById('calGrid');
+    if (!grid) return;
+    // 13 weeks x 5 days, ordered column by column (week1 mon-fri, week2 mon-fri, ...)
+    const data = [
+      1, 1,-1, 0, 1,
+      1, 2, 1, 1,-1,
+     -1, 0, 1, 1, 2,
+      2, 1,-1, 1, 1,
+      1,-2,-1, 0, 1,
+      1, 1, 2, 1, 1,
+      2, 1, 1, 0,-1,
+      1,-1, 1, 1, 2,
+      1, 1, 1,-1, 0,
+     -1, 1, 2, 1, 1,
+      1, 2, 1,-1, 1,
+      1, 1, 0, 1, 1,
+      2, 1, 1,-1, 1
+    ];
+    data.forEach(level => {
+      const c = document.createElement('i');
+      c.className = 'cell';
+      c.setAttribute('data-l', String(level));
+      grid.appendChild(c);
+    });
+  })();
 </script>
 <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 <script async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
