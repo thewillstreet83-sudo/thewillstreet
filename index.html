@@ -254,9 +254,10 @@
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
     mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   }
-  .ticker{display:flex;gap:48px;animation:scroll 60s linear infinite;width:max-content}
+  .ticker{display:flex;animation:scroll 60s linear infinite;width:max-content}
   .tick{
     display:flex;align-items:center;gap:10px;
+    margin-right:48px;
     font-family:'JetBrains Mono',monospace;font-size:12px;
     color:var(--ink);white-space:nowrap;flex-shrink:0;
   }
@@ -266,7 +267,7 @@
   .tick .chg.up{color:var(--up)}
   .tick .chg.down{color:var(--down)}
   .tick-sep{width:4px;height:4px;border-radius:50%;background:var(--ink-mute);flex-shrink:0;align-self:center}
-  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}
 
   /* ---------- JOURNAL ---------- */
   .journal-sec{background:var(--cream-2)}
@@ -574,7 +575,7 @@
 <section class="hero-sec" data-theme="light" data-screen-label="01 Hero">
   <div class="hero-inner container">
     <h1 class="hero serif reveal d1">Discipline is <em>the asset.</em></h1>
-    <p class="hero-sub reveal d2">Join a community of 3,000+ traders.</p>
+    <p class="hero-sub reveal d2">Join a community of 3,500+ traders.</p>
     <div class="hero-cta-row reveal d3">
       <a href="https://discord.gg/YJnVudWqbk" class="hero-btn">Join the Discord <span class="arr">↗</span></a>
     </div>
@@ -590,8 +591,8 @@
 <section class="journal-sec" data-theme="light" data-screen-label="02 Journal" id="journalSec">
   <div class="journal-wrap">
     <div class="journal-copy reveal">
-      <h2 class="section-title">Your trades,<br/><em>held to account.</em></h2>
-      <p class="lead">Every trade tagged, every mistake logged, every edge measured. You start guessing less and noticing more.</p>
+      <h2 class="section-title">The WillStreet <em>Journal.</em></h2>
+      <p class="lead">Every trade tagged. Every mistake logged. Every edge measured. The journal I needed, built right.</p>
       <a href="/journal/waitlist/" class="link-cta">Join the waitlist <span class="arr">↗</span></a>
     </div>
 
@@ -667,8 +668,8 @@
           <div class="itc-item" data-idx="2">
             <div class="itc-item-num">№ 03</div>
             <div class="itc-item-text">
-              <div class="itc-item-title">Direct DMs welcome.</div>
-              <div class="itc-item-body">Ask, and I answer. There is nothing to upsell.</div>
+              <div class="itc-item-title">Strategy, taught in public.</div>
+              <div class="itc-item-body">The full playbook. Every rule, every condition, every exception.</div>
             </div>
           </div>
         </div>
@@ -853,9 +854,9 @@
           <span class="chg ${cls}">${arrow} ${fmtChg(t.chg).replace('+','').replace('-','')}</span>
         </div>`;
       };
-      // Build twice for seamless loop
-      const html = SYMBOLS.map(make).join('') + SYMBOLS.map(make).join('');
-      el.innerHTML = html;
+      // Build 3 times for seamless loop on wide viewports (translateX -33.33% = 1 copy)
+      const single = SYMBOLS.map(make).join('');
+      el.innerHTML = single + single + single;
     }
 
     // Render fallback immediately so ticker is never empty
